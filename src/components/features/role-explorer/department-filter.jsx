@@ -98,7 +98,7 @@ export function DepartmentFilter({
               type="button"
               onClick={handleClear}
               aria-label="Hapus kata kunci pencarian"
-              className="absolute right-2 inline-flex min-h-8 cursor-pointer items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600 transition-colors hover:bg-blue-50 hover:text-[#0057FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] sm:right-2.5 sm:text-xs"
+              className="absolute right-2 inline-flex min-h-8 cursor-pointer items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600 transition-colors hover:bg-red-50 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:right-2.5 sm:text-xs"
             >
               <X aria-hidden="true" className="h-3.5 w-3.5" />
               <span>Hapus</span>
