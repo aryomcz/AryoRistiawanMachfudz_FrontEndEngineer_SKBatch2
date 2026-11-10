@@ -5,14 +5,20 @@ export function RoleExplorerFallback() {
   return (
     <div aria-busy="true" aria-label="Memuat penjelajah posisi karir">
       <div className="rounded-2xl border border-slate-200/90 bg-white p-3 sm:rounded-3xl sm:p-4">
-        <Skeleton className="mb-2.5 h-4 w-32" />
-        <div className="flex flex-wrap items-center gap-2">
-          {Array.from({ length: 7 }).map((_, idx) => (
-            <Skeleton
-              key={`filter-skeleton-${idx}`}
-              className="h-10 w-28 rounded-full sm:h-11 sm:w-32"
-            />
-          ))}
+        <div className="mb-3.5">
+          <Skeleton className="mb-2 h-4 w-40" />
+          <Skeleton className="h-11 w-full rounded-full sm:h-12" />
+        </div>
+        <div className="border-t border-slate-100 pt-3">
+          <Skeleton className="mb-2.5 h-4 w-32" />
+          <div className="flex flex-wrap items-center gap-2">
+            {Array.from({ length: 7 }).map((_, idx) => (
+              <Skeleton
+                key={`filter-skeleton-${idx}`}
+                className="h-10 w-28 rounded-full sm:h-11 sm:w-32"
+              />
+            ))}
+          </div>
         </div>
       </div>
 

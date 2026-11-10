@@ -23,6 +23,8 @@ export function useRoleFilter() {
     ? rawDeptParam
     : DEFAULT_DEPARTMENT;
 
+  const initialQueryParam = searchParams.get("q") || "";
+  const [searchQuery, setSearchQueryState] = useState(initialQueryParam);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,12 +35,38 @@ export function useRoleFilter() {
     return () => clearTimeout(timer);
   }, [activeDepartment]);
 
+  // Debounce URL synchronization for search query so typing stays instant
+  useEffect(() => {
+    const currentUrlQuery = searchParams.get("q") || "";
+    const trimmedQuery = searchQuery.trim();
+
+    if (trimmedQuery === currentUrlQuery) return;
+
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (trimmedQuery) {
+        params.set("q", trimmedQuery);
+      } else {
+        params.delete("q");
+      }
+
+      const queryString = params.toString();
+      const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
+      router.replace(newUrl, { scroll: false });
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery, pathname, router, searchParams]);
+
   const filteredRoles = useMemo(
-    () => getRolesByDepartment(activeDepartment),
-    [activeDepartment]
+    () => getRolesByDepartment(activeDepartment, searchQuery),
+    [activeDepartment, searchQuery]
   );
 
-  const departmentCounts = useMemo(() => getDepartmentCounts(), []);
+  const departmentCounts = useMemo(
+    () => getDepartmentCounts(searchQuery),
+    [searchQuery]
+  );
 
   const activeDepartmentObj = useMemo(
     () =>
@@ -59,21 +87,55 @@ export function useRoleFilter() {
         params.set("dept", newDeptId);
       }
 
+      const trimmedQuery = searchQuery.trim();
+      if (trimmedQuery) {
+        params.set("q", trimmedQuery);
+      } else {
+        params.delete("q");
+      }
+
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
 
       router.replace(newUrl, { scroll: false });
     },
-    [activeDepartment, pathname, router, searchParams]
+    [activeDepartment, pathname, router, searchParams, searchQuery]
   );
 
+  const setSearchQuery = useCallback((value) => {
+    setSearchQueryState(value);
+  }, []);
+
+  const clearSearch = useCallback(() => {
+    setSearchQueryState("");
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("q");
+    const queryString = params.toString();
+    const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
+    router.replace(newUrl, { scroll: false });
+  }, [pathname, router, searchParams]);
+
   const resetFilter = useCallback(() => {
-    setDepartment(DEFAULT_DEPARTMENT);
-  }, [setDepartment]);
+    if (activeDepartment !== DEFAULT_DEPARTMENT) {
+      setIsLoading(true);
+    }
+    setSearchQueryState("");
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("dept");
+    params.delete("q");
+
+    const queryString = params.toString();
+    const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
+    router.replace(newUrl, { scroll: false });
+  }, [activeDepartment, pathname, router, searchParams]);
 
   return {
     activeDepartment,
     activeDepartmentLabel: activeDepartmentObj.label,
+    searchQuery,
+    setSearchQuery,
+    clearSearch,
     setDepartment,
     resetFilter,
     filteredRoles,

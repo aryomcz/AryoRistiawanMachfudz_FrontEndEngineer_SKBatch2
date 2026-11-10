@@ -9,6 +9,9 @@ export function RoleExplorer() {
   const {
     activeDepartment,
     activeDepartmentLabel,
+    searchQuery,
+    setSearchQuery,
+    clearSearch,
     setDepartment,
     resetFilter,
     filteredRoles,
@@ -23,6 +26,9 @@ export function RoleExplorer() {
         activeDepartment={activeDepartment}
         departmentCounts={departmentCounts}
         onSelectDepartment={setDepartment}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onClearSearch={clearSearch}
       />
 
       <RoleGrid
@@ -30,7 +36,9 @@ export function RoleExplorer() {
         isLoading={isLoading}
         activeDepartment={activeDepartment}
         activeDepartmentLabel={activeDepartmentLabel}
+        searchQuery={searchQuery}
         onResetFilter={resetFilter}
+        onClearSearch={clearSearch}
       />
     </div>
   );

@@ -11,9 +11,13 @@ export function RoleGrid({
   isLoading,
   activeDepartment,
   activeDepartmentLabel,
+  searchQuery = "",
   onResetFilter,
+  onClearSearch,
 }) {
-  const isFiltered = activeDepartment !== DEFAULT_DEPARTMENT;
+  const trimmedSearch = searchQuery.trim();
+  const isFiltered =
+    activeDepartment !== DEFAULT_DEPARTMENT || trimmedSearch.length > 0;
 
   return (
     <section aria-labelledby="role-grid-heading" className="mt-6">
@@ -50,6 +54,15 @@ export function RoleGrid({
               <strong className="font-semibold text-[#0057FF]">
                 {activeDepartmentLabel}
               </strong>
+              {trimmedSearch && (
+                <>
+                  {" "}
+                  dengan kata kunci{" "}
+                  <strong className="font-semibold text-slate-900">
+                    &ldquo;{trimmedSearch}&rdquo;
+                  </strong>
+                </>
+              )}
             </span>
           )}
         </div>
@@ -88,7 +101,10 @@ export function RoleGrid({
       ) : roles.length === 0 ? (
         <EmptyState
           departmentLabel={activeDepartmentLabel}
+          activeDepartment={activeDepartment}
+          searchQuery={trimmedSearch}
           onReset={onResetFilter}
+          onClearSearch={onClearSearch}
         />
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

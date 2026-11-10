@@ -44,25 +44,63 @@ export function getRelatedRoles(currentRoleId, departmentId, limit = 2) {
 }
 
 /**
- * Filter roles by department ID.
- * Returns all roles when departmentId is "all" or falsy.
+ * Check whether a role matches a search query across key fields.
+ * Supports multi-word queries where every token must match at least one field.
+ * @param {Object} role
+ * @param {string} searchQuery
+ * @returns {boolean}
+ */
+export function matchesRoleSearch(role, searchQuery) {
+  const normalizedQuery = searchQuery?.trim().toLowerCase() || "";
+  if (!normalizedQuery) return true;
+
+  const tokens = normalizedQuery.split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return true;
+
+  const searchableText = [
+    role.title,
+    role.departmentLabel,
+    role.summary,
+    role.workType,
+    role.employmentType,
+    role.level,
+    role.location,
+    ...(Array.isArray(role.skills) ? role.skills : []),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return tokens.every((token) => searchableText.includes(token));
+}
+
+/**
+ * Filter roles by department ID and optional search query.
+ * Returns all matching roles when departmentId is "all" or falsy.
  * @param {string} departmentId
+ * @param {string} [searchQuery=""]
  * @returns {Array}
  */
-export function getRolesByDepartment(departmentId) {
-  if (!departmentId || departmentId === DEFAULT_DEPARTMENT) {
-    return rolesData;
-  }
-  return rolesData.filter((role) => role.department === departmentId);
+export function getRolesByDepartment(departmentId, searchQuery = "") {
+  return rolesData.filter((role) => {
+    const matchesDept =
+      !departmentId ||
+      departmentId === DEFAULT_DEPARTMENT ||
+      role.department === departmentId;
+
+    return matchesDept && matchesRoleSearch(role, searchQuery);
+  });
 }
 
 /**
  * Compute total role count per department ID, including "all" and zero-count departments.
+ * Respects active search query so department badges reflect matching roles.
+ * @param {string} [searchQuery=""]
  * @returns {Record<string, number>}
  */
-export function getDepartmentCounts() {
+export function getDepartmentCounts(searchQuery = "") {
   const counts = {
-    [DEFAULT_DEPARTMENT]: rolesData.length,
+    [DEFAULT_DEPARTMENT]: 0,
   };
 
   for (const dept of DEPARTMENTS) {
@@ -72,6 +110,9 @@ export function getDepartmentCounts() {
   }
 
   for (const role of rolesData) {
+    if (!matchesRoleSearch(role, searchQuery)) continue;
+
+    counts[DEFAULT_DEPARTMENT] += 1;
     if (counts[role.department] !== undefined) {
       counts[role.department] += 1;
     }
