@@ -6,6 +6,14 @@ const BADGE_VARIANTS = {
   success: "bg-emerald-50 text-emerald-800 border-emerald-200/80",
   warning: "bg-amber-50 text-amber-800 border-amber-200/80",
   outline: "bg-white text-slate-700 border-slate-200",
+  glass:
+    "border-white/25 bg-white/15 text-white shadow-2xs backdrop-blur-md",
+  "glass-primary":
+    "border-sky-300/35 bg-sky-500/25 text-white shadow-2xs backdrop-blur-md",
+  "glass-success":
+    "border-emerald-300/35 bg-emerald-500/20 text-emerald-50 shadow-2xs backdrop-blur-md",
+  "glass-warning":
+    "border-amber-300/35 bg-amber-500/20 text-amber-50 shadow-2xs backdrop-blur-md",
 };
 
 export function Badge({

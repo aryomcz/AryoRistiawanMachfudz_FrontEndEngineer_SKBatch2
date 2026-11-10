@@ -28,7 +28,7 @@ export default function NotFound() {
             </div>
 
             <div className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#0057FF]">
-              <span>Error 404 — Halaman Tidak Ditemukan</span>
+              <span>Error 404 -Halaman Tidak Ditemukan</span>
             </div>
 
             <h1 className="mt-3 font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -72,7 +72,7 @@ export default function NotFound() {
       <footer className="mt-auto border-t border-slate-200/80 bg-white py-6">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
           <p>© 2026 SekolahKarir. Seluruh hak cipta dilindungi.</p>
-          <p>Frontend Engineer Mini Assignment — Batch 2</p>
+          <p>Frontend Engineer Mini Assignment -Batch 2</p>
         </div>
       </footer>
     </div>

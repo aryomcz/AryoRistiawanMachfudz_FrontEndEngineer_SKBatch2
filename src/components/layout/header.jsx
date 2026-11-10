@@ -180,7 +180,7 @@ function HeaderContent({ pathname }) {
       <header
         onFocusCapture={() => setIsNavbarHidden(false)}
         className={cn(
-          "sticky top-0 z-30 w-full px-3 pt-3 pb-2 transition-transform duration-300 ease-in-out motion-reduce:transition-none sm:px-6 sm:pt-4 lg:px-8",
+          "fixed top-0 z-30 w-full px-3 pt-3 pb-2 transition-transform duration-300 ease-in-out motion-reduce:transition-none sm:px-6 sm:pt-4 lg:px-8",
           isNavbarHidden && !isMobileMenuOpen
             ? "-translate-y-full pointer-events-none"
             : "translate-y-0"
@@ -242,7 +242,7 @@ function HeaderContent({ pathname }) {
 
           {/* Right: Desktop & Mobile Action Pill Buttons */}
           <div className="flex shrink-0 items-center gap-2">
-            {/* Primary Blue Pill — Desktop Only */}
+            {/* Primary Blue Pill -Desktop Only */}
             <Link
               href="/#role-explorer"
               className="hidden min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0057FF] px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-150 hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2 lg:inline-flex"
@@ -250,7 +250,7 @@ function HeaderContent({ pathname }) {
               Pilih kebutuhanmu
             </Link>
 
-            {/* Masuk Pill Button — Visible on Both Mobile & Desktop */}
+            {/* Masuk Pill Button -Visible on Both Mobile & Desktop */}
             <Link
               href="/masuk"
               aria-current={isMasukActive ? "page" : undefined}
@@ -264,7 +264,7 @@ function HeaderContent({ pathname }) {
               Masuk
             </Link>
 
-            {/* Circular Hamburger Menu Button — Mobile & Tablet Only */}
+            {/* Circular Hamburger Menu Button -Mobile & Tablet Only */}
             <button
               type="button"
               aria-label="Buka menu navigasi"
