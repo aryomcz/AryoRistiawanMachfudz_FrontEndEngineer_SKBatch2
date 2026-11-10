@@ -1,3 +1,4 @@
+import { Loader2 } from "lucide-react";
 import { DEFAULT_DEPARTMENT } from "@/lib/constants";
 import { EmptyState } from "@/components/shared/empty-state";
 import { RoleCard } from "./role-card";
@@ -29,9 +30,9 @@ export function RoleGrid({
         >
           {isLoading ? (
             <span className="inline-flex items-center gap-2 text-slate-500">
-              <span
+              <Loader2
                 aria-hidden="true"
-                className="h-2 w-2 rounded-full bg-[#0057FF] animate-ping motion-reduce:animate-none"
+                className="h-3.5 w-3.5 animate-spin text-[#0057FF]"
               />
               Memuat daftar posisi untuk{" "}
               <strong className="font-semibold text-slate-800">

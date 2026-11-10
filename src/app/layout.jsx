@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="id" className={`${urbanist.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
         <Header />
-        <main className="pt-24 lg:pt-26">
+        <main className="pt-20 lg:pt-22">
         {children}
         </main>
         <Footer className="mt-auto" />
