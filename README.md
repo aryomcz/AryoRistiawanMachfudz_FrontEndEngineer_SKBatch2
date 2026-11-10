@@ -1,22 +1,38 @@
-# SekolahKarir -Role Explorer
+# SekolahKarir — Role Explorer
 
-Aplikasi web **Role Explorer** responsif untuk **Mini Assignment -Frontend Engineer (SekolahKarir Batch 2)**. Proyek ini dirancang untuk mempermudah pengguna menjelajahi posisi karir berdasarkan departemen dengan pengelolaan _state_ berbasis URL (_Single Source of Truth_), transisi _skeleton loading_ bebas pergeseran tata letak (_Zero Cumulative Layout Shift_), halaman detail peran interaktif, serta _empty state_ dan halaman _404 Not Found_ yang terintegrasi.
+Aplikasi web **Role Explorer** responsif untuk **Mini Assignment — Frontend Engineer (SekolahKarir Batch 2)**. Proyek ini dirancang dengan fokus pada **ketepatan eksekusi brief**, **kualitas _product reasoning_**, serta keseimbangan antara **struktur kode yang _scalable_**, **detail UX yang matang**, dan **pengelolaan _state_ yang reliabel**.
+
+🔗 **Live Demo**: _https://sekolahkarir-role.vercel.app/_
 
 ---
 
-## 1. Tech Stack
+## 1. Kerangka Berpikir & Pengambilan Keputusan (_Problem Framing & Trade-offs_)
+
+Brief menekankan bahwa penilaian tidak dilihat dari seberapa kompleks solusi, melainkan dari **kualitas _reasoning_ dan kejelasan eksekusi**. Berikut adalah keputusan produk dan teknis utama yang diambil beserta alasan di baliknya:
+
+| Tantangan / Masalah Produk                                                                 | Keputusan Desain & Teknis                                                                                  | Alasan (_Trade-off & Product Reasoning_)                                                                                                                                                                                                                                                                                                                                                      |
+| :----------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Bagaimana menyimpan _state_ filter & pencarian agar praktis bagi kandidat?**          | **Hybrid URL + Local State** (`?dept=...&q=...`) menggunakan Next.js `useSearchParams` & `router.replace`. | Menyimpan _state_ di URL memungkinkan kandidat membagikan tautan posisi spesifik ke rekan (misal: `/?dept=engineering&q=react`) dan menjaga _state_ saat halaman di-_refresh_. Penggunaan _debounce_ `250ms` pada _search query_ menjaga pengetikan tetap instan (**0ms input lag**) tanpa membebani _history stack_ peramban.                                                                |
+| **2. Bagaimana cara tercepat bagi _reviewer_ & _user_ menguji _Empty State_?**             | Menyediakan departemen **`Legal & People (0)`** + **Contextual Search Empty State**.                       | Alih-alih mengharuskan _reviewer_ mengubah kode untuk melihat _empty state_, tersedia tab departemen dengan `0` lowongan untuk pengujian **1 klik**, ditambah _empty state_ kontekstual saat kata kunci pencarian tidak ditemukan.                                                                                                                                                            |
+| **3. Apa yang terjadi jika _user_ mencari kata kunci di satu departemen dan hasilnya 0?**  | **Dynamic Department Badge Counter** yang bereaksi terhadap kata kunci pencarian.                          | Saat _user_ mengetik kata kunci (misal: `"Figma"` saat berada di tab `Engineering`), angka pada lencana departemen lain (`Design 2`) otomatis diperbarui secara _real-time_. Ini mencegah _blind clicking_ dan memberi petunjuk visual di departemen mana peran tersebut berada.                                                                                                              |
+| **4. Tata letak tombol filter di layar _mobile_: _Horizontal Scroll_ vs _Wrapped Pills_?** | Menggunakan **Wrapped Pills (`flex-wrap`)** di seluruh ukuran layar.                                       | Dengan hanya 6 departemen, menampilkan seluruh opsi secara langsung (_wrapped_) menghilangkan _hidden discoverability_ (opsi tersembunyi di balik _scroll_ samping) dan mencegah teks terpotong di layar sempit.                                                                                                                                                                              |
+| **5. Mengapa menyertakan Header, Footer, & Halaman Detail Peran?**                         | Dibangun sebagai **Contextual Product Shell** dengan **Strict Scope Boundary**.                            | Komponen _Role Explorer_ jarang berdiri di ruang hampa. Menyertakan _Header_ (dengan _hover dropdown_ & _mobile drawer_) dan _Footer_ di `layout.jsx` mendemonstrasikan bagaimana komponen ini hidup di ekosistem nyata **SekolahKarir**. Menu di luar cakupan tugas sengaja diarahkan ke halaman `404 Not Found` kustom agar batas _scope_ tetap jelas dan tidak terdistraksi fitur _dummy_. |
+
+---
+
+## 2. Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
 - **Library UI**: React 19 (JavaScript / JSX)
 - **Styling**: Tailwind CSS v4
 - **Typography**: `Urbanist` (`400`, `500`, `600`, `700`, `800`) via `next/font/google`
-- **Icons & Media**: Inline SVG (tanpa dependensi paket ikon eksternal) & `next/image` teroptimasi
+- **Icons & Media**: `lucide-react`, Inline SVG kustom, & `next/image` teroptimasi
 
 ---
 
-## 2. Arsitektur & Struktur Frontend (`Frontend Structure`)
+## 3. Arsitektur & Struktur Frontend (`Frontend Structure`)
 
-Struktur direktori menerapkan pemisahan tanggung jawab (_modular separation of concerns_) yang rapi dan proporsional untuk skala fitur eksplorasi karir:
+Struktur direktori menerapkan pemisahan tanggung jawab (_modular separation of concerns_) yang jelas antara lapisan data, logika bisnis/state, komponen primitif UI, dan fitur domain:
 
 ```text
 public/
@@ -24,97 +40,95 @@ public/
 src/
 ├── app/
 │   ├── globals.css                  # Konfigurasi tema, variabel warna, dan font Urbanist
-│   ├── layout.jsx                   # Root layout (lang="id", font Urbanist, metadata)
+│   ├── layout.jsx                   # Root layout global (Header, main wrapper, & Footer)
 │   ├── loading.jsx                  # Fallback skeleton halaman utama untuk Suspense boundary
-│   ├── not-found.jsx                # Halaman 404 kustom dengan tombol "Kembali ke Karir"
+│   ├── not-found.jsx                # Halaman 404 kustom untuk menjaga scope boundary
 │   ├── page.jsx                     # Halaman utama Role Explorer
 │   └── roles/
 │       └── [id]/
 │           ├── loading.jsx          # Skeleton loading khusus halaman detail peran
 │           └── page.jsx             # Halaman detail posisi karir (SSG via generateStaticParams)
 ├── components/
-│   ├── ui/                          # Komponen primitif reusable
-│   │   ├── badge.jsx                # Mendukung varian solid, outline, dan glassmorphism
-│   │   ├── button.jsx               # Tombol kapsul aksesibel dengan fokus ring jelas
+│   ├── ui/                          # Komponen primitif reusable (Design System)
+│   │   ├── badge.jsx                # Varian solid, outline, dan glassmorphism
+│   │   ├── button.jsx               # Tombol kapsul aksesibel dengan focus ring jelas
 │   │   └── skeleton.jsx             # Primitif skeleton dengan dukungan reduced-motion
-│   ├── layout/
-│   │   └── header.jsx               # Floating pill navbar dinamis + mobile slide-over drawer
+│   ├── layout/                      # Contextual Layout Shell
+│   │   ├── header.jsx               # Floating pill navbar, hover dropdown, & mobile drawer
+│   │   └── footer.jsx               # Global footer reusable
 │   ├── shared/
-│   │   └── empty-state.jsx          # Komponen Empty State interaktif dengan tombol reset
+│   │   └── empty-state.jsx          # Empty State kontekstual (filter departemen & pencarian)
 │   └── features/
-│       └── role-explorer/           # Komponen domain Role Explorer
-│           ├── department-filter.jsx
-│           ├── role-card.jsx
-│           ├── role-card-skeleton.jsx
-│           ├── role-detail-view.jsx
-│           ├── role-explorer.jsx
-│           └── role-grid.jsx
+│       └── role-explorer/           # Domain utama Role Explorer
+│           ├── department-filter.jsx # Panel kontrol terpadu: Search Bar + Department Pills
+│           ├── role-card.jsx        # Kartu informasi peran dengan tinggi seragam
+│           ├── role-card-skeleton.jsx # Skeleton presisi untuk mencegah layout shift (CLS)
+│           ├── role-detail-view.jsx # Tampilan detail posisi, galeri, & posisi terkait
+│           ├── role-explorer.jsx    # Container orchestrator fitur Role Explorer
+│           └── role-grid.jsx        # Grid kartu + atomic live status bar
 ├── config/
-│   └── site.js                      # Metadata dan konfigurasi informasi situs
+│   └── site.js                      # Konfigurasi metadata situs
 ├── data/
-│   └── roles.json                   # Mock data 10 posisi karir lengkap dengan galeri & detail
+│   └── roles.json                   # Mock data 10 posisi karir lintas departemen
 ├── hooks/
-│   └── use-role-filter.js           # Custom hook pengelolaan state filter & URL query
+│   └── use-role-filter.js           # Custom hook pengelolaan state filter, search, & URL sync
 ├── lib/
-│   ├── constants.js                 # Konstanta departemen & durasi simulasi loading (300ms)
+│   ├── constants.js                 # Konstanta departemen & konfigurasi transisi
 │   └── utils.js                     # Utilitas penggabung class ringan (cn)
 └── services/
-    └── role.service.js              # Abstraksi query data peran, detail peran, & kalkulasi jumlah
+    └── role.service.js              # Pure functions untuk query, multi-field search, & agregasi
 ```
 
-**Alasan Pemilihan Struktur**:
+**Keunggulan Arsitektur Ini**:
 
-- **Pemisahan Layer**: Memisahkan lapisan data (`src/data/`, `src/services/`), logika _state_ (`src/hooks/`), komponen primitif (`src/components/ui/`), dan komponen fitur (`src/components/features/role-explorer/`) membuat setiap file tetap ringkas, deklaratif, dan mudah dipelihara.
-- **Tanpa Dependensi Berlebihan**: Menggunakan _custom hook_ berbasis React & Next.js Navigation API tanpa _library global state_ tambahan yang tidak diperlukan.
-
----
-
-## 3. Keputusan Penanganan State (`State Handling`)
-
-1. **Single Source of Truth melalui URL Search Parameters (`?dept=...`)**:
-   - Status departemen yang aktif disimpan pada URL query parameter menggunakan `useSearchParams()` dan diperbarui secara mulus menggunakan `router.replace(..., { scroll: false })`.
-   - **Manfaat Produk**: URL hasil filter dapat dibagikan langsung (_shareable link_), tetap bertahan saat halaman di-_refresh_, dan mendukung navigasi _Back/Forward_ peramban. Jika pengguna memasukkan parameter `?dept=` yang tidak valid di URL, sistem otomatis melakukan _fallback_ ke state _default_ (`Semua Departemen`).
-2. **Derived State (`useMemo`)**:
-   - Daftar peran yang terfilter (`filteredRoles`), jumlah posisi per departemen (`departmentCounts`), dan label departemen aktif dihitung secara _derived_ menggunakan `useMemo` langsung dari data sumber dan parameter URL, sehingga bebas dari _bug_ sinkronisasi antar-`useState`.
-3. **Controlled Skeleton Transition & Race-Condition Cleanup**:
-   - Saat berpindah filter departemen maupun membuka halaman detail peran (`/roles/[id]`), sistem menampilkan _skeleton loading_ terkontrol selama `300ms` (`SIMULATED_LOADING_DELAY_MS`).
-   - Pembersihan `clearTimeout(timer)` di dalam `useEffect` memastikan tidak terjadi _race condition_ apabila pengguna mengklik beberapa tab departemen secara cepat.
+- ** Mudah Diuji & Dipelihara**: Seluruh logika pemfilteran dan kalkulasi jumlah posisi berada di fungsi murni (`src/services/role.service.js`), terpisah dari siklus hidup React (`src/hooks/use-role-filter.js`) dan representasi visual (`src/components/`).
+- **Zero External State Bloat**: Memanfaatkan _built-in hooks_ React (`useMemo`, `useCallback`, `useState`) dan URL Search Params tanpa ketergantungan _library state management_ eksternal yang berlebihan untuk skala fitur ini.
 
 ---
 
-## 4. Detail UX & Aksesibilitas (`UX Detail`)
+## 4. Penanganan State (`State Handling`)
 
-- **Floating Pill Navbar Responsif & Dinamis**:
-  - Menampilkan _highlight_ menu aktif secara dinamis mengikuti URL saat ini (`usePathname()`).
-  - **Auto-Hide on Scroll**: Navbar otomatis bergeser ke atas (`-translate-y-full`) saat pengguna melakukan _scroll_ ke bawah agar ruang baca lebih lega, dan muncul kembali saat _scroll_ ke atas atau ketika menerima fokus _keyboard_ (`onFocusCapture`).
-  - **Mobile Slide-Over Drawer**: Pada layar _mobile_, menu navigasi dilengkapi _drawer_ geser dengan kartu akun **SekolahKarir**, penguncian _body scroll_, dan dukungan tombol `Escape`.
+1. **Sinkronisasi Dua Arah dengan URL (`?dept=...&q=...`)**:
+   - Parameter `?dept=` menjadi _Single Source of Truth_ untuk departemen aktif. Apabila pengguna memasukkan nilai `?dept=` yang tidak valid di URL, sistem otomatis melakukan _fallback_ aman ke `all` (`Semua Departemen`).
+   - Parameter `?q=` disinkronkan secara _debounced_ (`250ms`) dari _state_ input pencarian lokal agar responsivitas ketikan tetap instan sekaligus menghasilkan URL yang dapat dibagikan (_deep-linkable_).
+2. **Derived State Bebas Redundansi (`useMemo`)**:
+   - Daftar peran hasil saringan (`filteredRoles`), jumlah posisi per departemen (`departmentCounts`), dan label departemen aktif dihitung secara _derived_ menggunakan `useMemo`. Tidak ada duplikasi _state_ antara daftar peran penuh dan daftar peran terfilter yang berisiko menyebabkan _out-of-sync bug_.
+3. **Controlled Skeleton Transition & Cleanup**:
+   - Saat berpindah departemen, sistem menampilkan _skeleton loading_ terukur (`220ms`) dengan pembersihan `clearTimeout` pada `useEffect` untuk mencegah _race condition_ ketika pengguna berpindah tab dengan cepat.
+4. **Granular Reset Actions**:
+   - Pengguna dapat menghapus kata kunci pencarian saja melalui tombol **`Hapus (X)`** atau tombol **`Escape`** (mempertahankan departemen aktif), maupun mereset seluruh filter sekaligus melalui tombol **`Reset filter`**.
+
+---
+
+## 5. Detail UX & Aksesibilitas (`UX Detail`)
+
+- **Panel Kontrol Pencarian & Filter Terpadu**:
+  - Mendukung pencarian _multi-keyword_ lintas atribut: **judul posisi**, **departemen**, **ringkasan**, **keahlian (`React`, `Figma`, `SQL`)**, **tipe kerja (`Remote`, `Hybrid`, `On-site`)**, hingga **level (`Intern`, `Junior`, `Mid-Level`)**.
+  - **Keyboard Shortcuts**: Tekan `/` dari mana saja di halaman untuk langsung memfokuskan kolom pencarian, dan tekan `Escape` untuk membersihkan kata kunci.
 - **Zero Cumulative Layout Shift (CLS)**:
-  - `<RoleCardSkeleton />` dan `<RoleDetailSkeleton />` dirancang mengikuti dimensi, tinggi minimum (`min-h-[296px]`), _padding_, dan struktur baris yang presisi dengan komponen aslinya.
-- **Kartu Peran Terstruktur & Sejajar**:
-  - Menggunakan _single-line title_ (`line-clamp-1`), ringkasan 2 baris dengan tinggi tetap (`min-h-[2.75rem] line-clamp-2`), baris _skill_ ringkas dengan indikator `+N` untuk keahlian tambahan, serta _footer_ 2 kolom (Lokasi di kiri & tombol kapsul `Lihat Detail →` dengan `whitespace-nowrap` di kanan) agar seluruh kartu dalam satu baris _grid_ sejajar sempurna.
-- **Uji Empty State dalam 1 Klik**:
-  - Setiap tombol filter departemen menampilkan lencana jumlah posisi terbuka. Departemen **`Legal & People (0)`** sengaja disiapkan dengan `0` posisi agar _reviewer_ dapat langsung menguji tampilan **Empty State** beserta tombol aksi **`Tampilkan Semua Departemen`** hanya dengan satu klik.
-- **Halaman Detail Peran (`/roles/[id]`) & Halaman 404 (`not-found.jsx`)**:
-  - Halaman detail peran menampilkan _hero cover photo_ dengan **Glassmorphism Badges** (`backdrop-blur-md`), galeri 3 foto suasana kerja tim, tanggung jawab, kualifikasi, benefit, _sticky sidebar_ ringkasan kompensasi, profil _Hiring Lead_, serta rekomendasi posisi terkait.
-  - Tautan yang belum tersedia di luar cakupan tugas diarahkan ke halaman **404 Not Found** berdesain senada yang dilengkapi tombol **`Kembali ke Karir`**.
+  - `<RoleExplorerFallback />`, `<RoleCardSkeleton />`, dan `<RoleDetailSkeleton />` dirancang mengikuti dimensi, _border-radius_, dan struktur elemen asli sehingga transisi pemuatan bebas dari lompatan tata letak.
+- **Keseragaman Visual Kartu (_Card Alignment_)**:
+  - Menggunakan judul 1 baris (`line-clamp-1`), ringkasan 2 baris dengan tinggi tetap (`min-h-[2.75rem] line-clamp-2`), deretan _skill badge_ dengan indikator `+N`, serta _footer_ yang selalu rata bawah (`mt-auto`) sehingga seluruh kartu dalam satu baris _grid_ sejajar rapi di segala ukuran layar.
+- **Navigasi Responsif & Interaktif**:
+  - **Desktop**: _Floating pill navbar_ dengan menu _dropdown_ halus saat di-_hover_ (dilengkapi _invisible hover bridge_ agar menu tidak tertutup saat kursor berpindah) serta perilaku _auto-hide_ saat _scroll_ ke bawah.
+  - **Mobile**: _Slide-over drawer_ dengan animasi _spring cubic-bezier_ (`cubic-bezier(0.16, 1, 0.3, 1)`), _backdrop fade_, penguncian _body scroll_, dan dukungan tombol `Escape`.
 - **Aksesibilitas (WCAG & Screen Reader)**:
-  - Tombol filter menggunakan `aria-pressed={isActive}`, sedangkan bar status menggunakan `role="status" aria-live="polite" aria-atomic="true"` untuk mengumumkan perubahan jumlah hasil filter secara kontekstual.
-  - Mendukung penuh preferensi pengguna dengan `prefers-reduced-motion` (`motion-reduce:transition-none` & `motion-reduce:animate-none`).
+  - Tombol departemen menggunakan `aria-pressed={isActive}`, kolom pencarian memiliki `<label>` eksplisit, dan bar status menggunakan `role="status" aria-live="polite" aria-atomic="true"` untuk mengumumkan perubahan jumlah hasil secara otomatis kepada pengguna _screen reader_.
+  - Menghormati preferensi sistem `prefers-reduced-motion` (`motion-reduce:transition-none` & `motion-reduce:animate-none`).
 
 ---
 
-## 5. Catatan Penggunaan AI (`TOOLS & AI POLICY`)
+## 6. Catatan Penggunaan AI (`TOOLS & AI POLICY`)
 
-Sesuai ketentuan pada _brief assignment_, pengerjaan proyek ini menggunakan bantuan _AI tools_ berikut:
+Sesuai ketentuan pada _brief assignment_, pengerjaan proyek ini menggunakan bantuan _AI tools_ sebagai _pair-programming assistant_:
 
-- **Google Gemini**: Digunakan untuk merancang arsitektur komponen, menyusun struktur direktori modular, dan menyusun _mock data_ posisi karir yang kontekstual dengan ekosistem produk **SekolahKarir**.
-- **Google Antigravity**: Digunakan untuk _scaffolding_ kode komponen JSX, penerapan standar _Next.js Best Practices_ (seperti `<Suspense>` boundary pada `useSearchParams()` dan `usePathname()`, serta `generateStaticParams()` pada rute dinamis), dan penyempurnaan antarmuka menggunakan panduan desain _UI/UX Pro Max_.
-
-Seluruh hasil kode, logika _state handling_, keputusan UX, responsivitas _mobile/desktop_, serta struktur komponen dipahami, diperiksa, dan dapat dijelaskan secara menyeluruh oleh kandidat.
+- **Google Gemini & Google Antigravity**:
+  - Digunakan untuk berdiskusi mengenai _edge cases_ UX, melakukan _scaffolding_ komponen JSX, menyusun _mock data_ posisi karir yang realistis bagi ekosistem **SekolahKarir**, serta memvalidasi praktik terbaik Next.js App Router (seperti `<Suspense>` boundary pada `useSearchParams()` dan `generateStaticParams()`).
+  - Seluruh keputusan produk, arsitektur _folder_, logika _filtering & state synchronization_, serta struktur kode diperiksa, dipahami sepenuhnya, dan dapat dijelaskan secara mendalam oleh kandidat.
 
 ---
 
-## 6. Cara Menjalankan Secara Lokal
+## 7. Cara Menjalankan Secara Lokal
 
 Pastikan **Node.js** (versi 18.18+ atau 20+) telah terpasang di perangkat Anda, kemudian jalankan perintah berikut di terminal:
 
@@ -131,7 +145,7 @@ Buka `http://localhost:3000` di peramban untuk mencoba aplikasi secara langsung.
 Untuk memeriksa kualitas kode (_linting_) dan menguji _production build_:
 
 ```bash
-# Pemeriksaan ESLint
+# Pemeriksaan kualitas kode dengan ESLint
 npm run lint
 
 # Build produksi & jalankan server produksi
