@@ -12,6 +12,10 @@ const urbanist = Urbanist({
 export const metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
+  icons: {
+    icon: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
