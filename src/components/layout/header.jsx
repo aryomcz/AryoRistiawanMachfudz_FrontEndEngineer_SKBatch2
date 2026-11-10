@@ -258,9 +258,31 @@ function ChevronRightIcon({ className = "h-4 w-4" }) {
 
 function HeaderContent({ pathname }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDrawerMounted, setIsDrawerMounted] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isNavbarHidden, setIsNavbarHidden] = useState(false);
 
   const isMasukActive = pathname === "/masuk" || pathname?.startsWith("/masuk/");
+
+  // Open mobile drawer with fluid slide-in transition
+  const handleOpenMobileMenu = () => {
+    setIsMobileMenuOpen(true);
+    setIsDrawerMounted(true);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsDrawerOpen(true);
+      });
+    });
+  };
+
+  // Close mobile drawer with fluid slide-out transition
+  const handleCloseMobileMenu = () => {
+    setIsDrawerOpen(false);
+    setTimeout(() => {
+      setIsDrawerMounted(false);
+      setIsMobileMenuOpen(false);
+    }, 300);
+  };
 
   // Auto-hide navbar when scrolling down, reveal when scrolling up
   useEffect(() => {
@@ -286,14 +308,14 @@ function HeaderContent({ pathname }) {
 
   // Lock body scroll & handle Escape key when mobile drawer is open
   useEffect(() => {
-    if (!isMobileMenuOpen) return;
+    if (!isDrawerMounted) return;
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        setIsMobileMenuOpen(false);
+        handleCloseMobileMenu();
       }
     };
 
@@ -302,7 +324,7 @@ function HeaderContent({ pathname }) {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isMobileMenuOpen]);
+  }, [isDrawerMounted]);
 
   return (
     <>
@@ -437,7 +459,7 @@ function HeaderContent({ pathname }) {
               aria-label="Buka menu navigasi"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
-              onClick={() => setIsMobileMenuOpen(true)}
+              onClick={handleOpenMobileMenu}
               className="inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#DCE3EC] text-slate-900 transition-colors duration-150 hover:bg-[#CED7E4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 sm:h-11 sm:w-11 lg:hidden"
             >
               <svg
@@ -459,8 +481,8 @@ function HeaderContent({ pathname }) {
         </div>
       </header>
 
-      {/* Mobile Navigation Slide-Over Drawer */}
-      {isMobileMenuOpen && (
+      {/* Mobile Navigation Slide-Over Drawer with smooth enter/exit animation */}
+      {isDrawerMounted && (
         <div
           className="fixed inset-0 z-50 lg:hidden"
           role="dialog"
@@ -468,20 +490,28 @@ function HeaderContent({ pathname }) {
           aria-label="Menu navigasi SekolahKarir"
           id="mobile-navigation-drawer"
         >
-          {/* Backdrop */}
+          {/* Backdrop with fade transition */}
           <div
             aria-hidden="true"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs transition-opacity"
+            onClick={handleCloseMobileMenu}
+            className={cn(
+              "fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity duration-300 ease-out",
+              isDrawerOpen ? "opacity-100" : "opacity-0"
+            )}
           />
 
-          {/* Slide-over Panel */}
-          <div className="fixed inset-y-0 right-0 z-10 flex w-[86%] max-w-[340px] flex-col bg-white shadow-2xl">
+          {/* Slide-over Panel with fluid spring-like slide transition */}
+          <div
+            className={cn(
+              "fixed inset-y-0 right-0 z-10 flex w-[86%] max-w-[340px] flex-col bg-white shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+              isDrawerOpen ? "translate-x-0" : "translate-x-full"
+            )}
+          >
             {/* Drawer Header */}
-            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
               <Link
                 href="/"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={handleCloseMobileMenu}
                 className="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]"
               >
                 <Image
@@ -497,19 +527,20 @@ function HeaderContent({ pathname }) {
                 </span>
               </Link>
 
+              {/* Dark circular close button matching mobile video recording */}
               <button
                 type="button"
                 aria-label="Tutup menu navigasi"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]"
+                onClick={handleCloseMobileMenu}
+                className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-slate-100 text-slate-800 border border-slate-300 shadow-xs transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]"
               >
                 <svg
                   aria-hidden="true"
-                  className="h-5 w-5"
+                  className="h-4 w-4"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
@@ -531,7 +562,7 @@ function HeaderContent({ pathname }) {
                 </p>
                 <Link
                   href="/masuk"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={handleCloseMobileMenu}
                   className="mt-3.5 flex min-h-10 w-full items-center justify-center rounded-xl bg-[#0057FF] px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF]"
                 >
                   Masuk / Daftar
@@ -557,7 +588,7 @@ function HeaderContent({ pathname }) {
                           <li key={item.title}>
                             <Link
                               href={item.href}
-                              onClick={() => setIsMobileMenuOpen(false)}
+                              onClick={handleCloseMobileMenu}
                               aria-current={isItemActive ? "page" : undefined}
                               className={cn(
                                 "group flex items-center justify-between gap-3 rounded-xl px-2.5 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]",
