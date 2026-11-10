@@ -450,3 +450,5 @@ export function Header() {
     </Suspense>
   );
 }
+
+export default Header;

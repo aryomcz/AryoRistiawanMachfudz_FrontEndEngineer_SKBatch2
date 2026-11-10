@@ -1,6 +1,7 @@
 import { Urbanist } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
+import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
 const urbanist = Urbanist({
@@ -23,7 +24,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id" className={`${urbanist.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
+        <Header />
+        <main className="pt-24 lg:pt-26">
         {children}
+        </main>
         <Footer className="mt-auto" />
       </body>
     </html>

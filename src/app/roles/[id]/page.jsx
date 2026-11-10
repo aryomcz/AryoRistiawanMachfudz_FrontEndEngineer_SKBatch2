@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { Header } from "@/components/layout/header";
 import { RoleDetailView } from "@/components/features/role-explorer/role-detail-view";
 import {
   getAllRoles,
@@ -42,8 +41,6 @@ export default async function RoleDetailPage({ params }) {
 
   return (
     <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-hidden">
-      <Header />
-
       <RoleDetailView role={role} relatedRoles={relatedRoles} />
     </div>
   );

@@ -1,4 +1,3 @@
-import { Header } from "@/components/layout/header";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function RoleDetailSkeleton() {
@@ -135,7 +134,6 @@ export function RoleDetailSkeleton() {
 export default function Loading() {
   return (
     <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-hidden">
-      <Header />
       <RoleDetailSkeleton />
     </div>
   );

@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { Header } from "@/components/layout/header";
 
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
-
       <main className="mx-auto flex w-full max-w-6xl flex-1 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-lg rounded-3xl border border-white/90 bg-[#EDF2F7]/85 p-4 shadow-2xs sm:p-6">
           <div className="rounded-2xl border border-slate-200/80 bg-white px-6 py-12 text-center sm:px-10 sm:py-14">

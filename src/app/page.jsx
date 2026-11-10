@@ -1,14 +1,11 @@
 import { Suspense } from "react";
-import { Header } from "@/components/layout/header";
 import { RoleExplorer } from "@/components/features/role-explorer/role-explorer";
 import { RoleExplorerFallback } from "./loading";
 
 export default function HomePage() {
   return (
     <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-hidden">
-      <Header />
-
-      <main className="mx-auto w-full max-w-6xl min-w-0 flex-1 px-4 pt-24 pb-6 sm:px-6 lg:pt-26 lg:px-8">
+      <main className="mx-auto w-full max-w-6xl min-w-0 flex-1 px-4 pb-6 sm:px-6 lg:px-8">
         {/* Hero Header Section */}
         <section className="mb-6 max-w-3xl sm:mb-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-semibold text-[#0057FF]">
