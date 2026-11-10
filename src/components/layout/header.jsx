@@ -12,18 +12,82 @@ const NAV_ITEMS = [
     href: "/cv-lamaran",
     matchPrefixes: ["/cv-lamaran"],
     hasDropdown: true,
+    dropdownWidth: "w-72",
+    dropdownItems: [
+      {
+        title: "Cek CV",
+        description: "CV Scanner: skor dan temuannya",
+        href: "/cv-lamaran",
+      },
+      {
+        title: "Buat / perbaiki CV",
+        description: "AI CV Builder",
+        href: "/cv-lamaran",
+      },
+      {
+        title: "Cari lowongan",
+        description: "Job Portal",
+        href: "/#role-explorer",
+      },
+      {
+        title: "Panduan & template",
+        description: "Interview, CV, dan lamaran",
+        href: "/cv-lamaran",
+      },
+    ],
   },
   {
     label: "Portofolio",
     href: "/portofolio",
     matchPrefixes: ["/portofolio"],
     hasDropdown: true,
+    dropdownWidth: "w-72",
+    dropdownItems: [
+      {
+        title: "Proyek yang dibuka",
+        description: "Brief, output, dan rubriknya",
+        href: "/portofolio",
+      },
+      {
+        title: "Cara kerja & contoh",
+        description: "Simulasi dari ambil proyek sampai hasil",
+        href: "/portofolio",
+      },
+      {
+        title: "Side Hustle Arena",
+        description: "Latihan proyek untuk portofolio",
+        href: "/portofolio",
+      },
+    ],
   },
   {
     label: "Karir & Peran",
     href: "/",
     matchPrefixes: ["/", "/roles"],
     hasDropdown: true,
+    dropdownWidth: "w-72",
+    dropdownItems: [
+      {
+        title: "Eksplorasi Peran",
+        description: "Daftar posisi terbuka Batch 2",
+        href: "/#role-explorer",
+      },
+      {
+        title: "Filter Departemen",
+        description: "Saring posisi sesuai bidang keahlian",
+        href: "/#role-explorer",
+      },
+      {
+        title: "Detail & Kualifikasi",
+        description: "Lihat tanggung jawab & skill tiap peran",
+        href: "/#role-explorer",
+      },
+      {
+        title: "Proses Seleksi",
+        description: "Alur rekrutmen Sekolah Karir",
+        href: "/#role-explorer",
+      },
+    ],
   },
   {
     label: "Program",
@@ -36,6 +100,21 @@ const NAV_ITEMS = [
     href: "/lainnya",
     matchPrefixes: ["/lainnya"],
     hasDropdown: true,
+    dropdownWidth: "w-52",
+    dropdownItems: [
+      {
+        title: "Review Alumni",
+        href: "/lainnya",
+      },
+      {
+        title: "Tentang Kami",
+        href: "/lainnya",
+      },
+      {
+        title: "Kontak",
+        href: "/lainnya",
+      },
+    ],
   },
 ];
 
@@ -55,8 +134,8 @@ const MOBILE_DRAWER_SECTIONS = [
       },
       {
         title: "Cari lowongan",
-        description: "Role Explorer & Job Portal",
-        href: "/",
+        description: "Job Portal",
+        href: "/#role-explorer",
       },
       {
         title: "Panduan & template",
@@ -75,8 +154,58 @@ const MOBILE_DRAWER_SECTIONS = [
       },
       {
         title: "Cara kerja & contoh",
-        description: "Simulasi dari ambil proyek",
+        description: "Simulasi dari ambil proyek sampai hasil",
         href: "/portofolio",
+      },
+      {
+        title: "Side Hustle Arena",
+        description: "Latihan proyek untuk portofolio",
+        href: "/portofolio",
+      },
+    ],
+  },
+  {
+    category: "KARIR & PERAN",
+    items: [
+      {
+        title: "Eksplorasi Peran",
+        description: "Daftar posisi terbuka Batch 2",
+        href: "/#role-explorer",
+      },
+      {
+        title: "Filter Departemen",
+        description: "Saring posisi sesuai bidang keahlian",
+        href: "/#role-explorer",
+      },
+      {
+        title: "Detail & Kualifikasi",
+        description: "Lihat tanggung jawab & skill tiap peran",
+        href: "/#role-explorer",
+      },
+      {
+        title: "Proses Seleksi",
+        description: "Alur rekrutmen Sekolah Karir",
+        href: "/#role-explorer",
+      },
+    ],
+  },
+  {
+    category: "LAINNYA",
+    items: [
+      {
+        title: "Review Alumni",
+        description: "Testimoni dan pencapaian alumni",
+        href: "/lainnya",
+      },
+      {
+        title: "Tentang Kami",
+        description: "Visi dan misi Sekolah Karir",
+        href: "/lainnya",
+      },
+      {
+        title: "Kontak",
+        description: "Hubungi tim kami",
+        href: "/lainnya",
       },
     ],
   },
@@ -215,27 +344,65 @@ function HeaderContent({ pathname }) {
               const isActive = isNavItemActive(item, pathname);
 
               return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={
-                    isActive
-                      ? "inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-2xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]"
-                      : "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-white/60 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]"
-                  }
-                >
-                  <span>{item.label}</span>
-                  {item.hasDropdown && (
-                    <ChevronDownIcon
-                      className={
-                        isActive
-                          ? "h-3.5 w-3.5 text-slate-900"
-                          : "h-3.5 w-3.5 text-slate-500"
-                      }
-                    />
+                <div key={item.label} className="relative group">
+                  <Link
+                    href={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]",
+                      isActive
+                        ? "bg-white font-semibold text-slate-900 shadow-2xs"
+                        : "text-slate-600 hover:bg-white/60 hover:text-slate-900 group-hover:bg-white group-hover:text-slate-900 group-hover:shadow-2xs"
+                    )}
+                  >
+                    <span>{item.label}</span>
+                    {item.hasDropdown && (
+                      <ChevronDownIcon
+                        className={cn(
+                          "h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180",
+                          isActive
+                            ? "text-slate-900"
+                            : "text-slate-500 group-hover:text-slate-900"
+                        )}
+                      />
+                    )}
+                  </Link>
+
+                  {item.hasDropdown && item.dropdownItems && (
+                    <div
+                      className={cn(
+                        "invisible opacity-0 pointer-events-none translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 absolute top-full pt-3 transition-all duration-200 ease-out z-50",
+                        item.dropdownAlign === "right" ? "right-0" : "left-0"
+                      )}
+                    >
+                      <div
+                        className={cn(
+                          "rounded-2xl border border-slate-200/90 bg-white p-2.5 shadow-xl shadow-slate-900/10 backdrop-blur-md",
+                          item.dropdownWidth || "w-72"
+                        )}
+                      >
+                        <div className="flex flex-col gap-0.5">
+                          {item.dropdownItems.map((subItem) => (
+                            <Link
+                              key={subItem.title}
+                              href={subItem.href}
+                              className="group/item flex flex-col rounded-xl px-3 py-2 text-left transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:bg-slate-50"
+                            >
+                              <span className="text-[13px] font-semibold text-slate-800 transition-colors group-hover/item:text-[#0057FF]">
+                                {subItem.title}
+                              </span>
+                              {subItem.description && (
+                                <span className="mt-0.5 text-xs text-slate-500">
+                                  {subItem.description}
+                                </span>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   )}
-                </Link>
+                </div>
               );
             })}
           </nav>
