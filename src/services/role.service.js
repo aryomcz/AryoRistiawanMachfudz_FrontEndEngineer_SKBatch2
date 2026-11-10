@@ -10,6 +10,40 @@ export function getAllRoles() {
 }
 
 /**
+ * Retrieve a single role by its ID.
+ * @param {string} roleId
+ * @returns {Object|null}
+ */
+export function getRoleById(roleId) {
+  if (!roleId) return null;
+  return rolesData.find((role) => role.id === roleId) || null;
+}
+
+/**
+ * Retrieve related roles in the same department (excluding the current role),
+ * falling back to other open roles if needed.
+ * @param {string} currentRoleId
+ * @param {string} departmentId
+ * @param {number} limit
+ * @returns {Array}
+ */
+export function getRelatedRoles(currentRoleId, departmentId, limit = 2) {
+  const sameDept = rolesData.filter(
+    (role) => role.department === departmentId && role.id !== currentRoleId
+  );
+
+  if (sameDept.length >= limit) {
+    return sameDept.slice(0, limit);
+  }
+
+  const others = rolesData.filter(
+    (role) => role.department !== departmentId && role.id !== currentRoleId
+  );
+
+  return [...sameDept, ...others].slice(0, limit);
+}
+
+/**
  * Filter roles by department ID.
  * Returns all roles when departmentId is "all" or falsy.
  * @param {string} departmentId

@@ -8,9 +8,48 @@
     "workType": "Remote",
     "employmentType": "Full-time",
     "level": "Junior / Entry Level",
+    "salaryRange": "Rp 8.500.000 – Rp 12.500.000",
     "summary": "Membangun antarmuka pengguna yang cepat, aksesibel, dan responsif untuk platform pembelajaran serta eksplorasi karir Sekolah Karir.",
     "skills": ["React", "Next.js", "Tailwind CSS", "REST API"],
-    "postedAt": "Baru saja"
+    "postedAt": "Baru saja",
+    "coverImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sesi diskusi arsitektur frontend & design system mingguan"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
+        "caption": "Kolaborasi lintas tim Engineering dan Product"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sprint review & demo fitur baru SekolahKarir"
+      }
+    ],
+    "responsibilities": [
+      "Mengembangkan komponen UI yang modular, responsif, dan aksesibel menggunakan Next.js App Router dan Tailwind CSS.",
+      "Berkolaborasi dengan Product Designer untuk menerjemahkan wireframe dan desain Figma menjadi kode produksi berstandar tinggi.",
+      "Mengoptimalkan performa halaman web (Core Web Vitals, Zero CLS, dan waktu muat halaman).",
+      "Melakukan code review bersama tim Engineering serta menjaga kualitas dan keterbacaan kode."
+    ],
+    "requirements": [
+      "Memiliki pemahaman kuat tentang JavaScript modern (ES6+), React, dan Next.js App Router.",
+      "Terbiasa membangun tata letak responsif (mobile-first) menggunakan Tailwind CSS.",
+      "Memahami prinsip pengelolaan state di sisi klien (React Hooks, URL Search Params) dan integrasi REST API.",
+      "Memiliki perhatian tinggi terhadap detail UX, aksesibilitas (ARIA), dan kerapian struktur kode."
+    ],
+    "benefits": [
+      "Fleksibilitas kerja Remote dari mana saja di Indonesia",
+      "Tunjangan perangkat kerja, internet bulanan, dan akses kursus premium",
+      "Asuransi kesehatan swasta & tunjangan kebugaran",
+      "Mentorship intensif 1-on-1 bersama Senior Engineer"
+    ],
+    "teamLead": {
+      "name": "Raka Pradipta",
+      "role": "Lead Frontend Engineer",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-02",
@@ -21,9 +60,48 @@
     "workType": "Hybrid",
     "employmentType": "Full-time",
     "level": "Mid-Level",
+    "salaryRange": "Rp 12.000.000 – Rp 17.000.000",
     "summary": "Merancang arsitektur API yang reliabel dan skalabel untuk mendukung sistem asesmen kompetensi dan manajemen kelas ribuan talenta.",
     "skills": ["Node.js", "PostgreSQL", "Redis", "System Design"],
-    "postedAt": "1 hari lalu"
+    "postedAt": "1 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
+        "caption": "Perancangan skema database & optimasi query"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80",
+        "caption": "Suasana kerja hybrid di kantor Jakarta"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80",
+        "caption": "Townhall & diskusi arsitektur sistem"
+      }
+    ],
+    "responsibilities": [
+      "Merancang, membangun, dan memelihara layanan RESTful API menggunakan Node.js dan PostgreSQL.",
+      "Mengoptimalkan performa query database dan menerapkan strategi caching menggunakan Redis.",
+      "Menjaga keamanan data pengguna, autentikasi, serta keandalan layanan saat trafik tinggi.",
+      "Menulis pengujian otomatis (unit & integration test) serta dokumentasi teknis API."
+    ],
+    "requirements": [
+      "Pengalaman minimal 2 tahun mengembangkan layanan backend dengan Node.js.",
+      "Menguasai desain database relasional (PostgreSQL), indexing, dan migrasi skema.",
+      "Memahami konsep asynchronous programming, caching, dan keamanan aplikasi web.",
+      "Terbiasa menggunakan Git, Docker, dan alur CI/CD modern."
+    ],
+    "benefits": [
+      "Skema kerja Hybrid yang fleksibel (2 hari WFO, 3 hari WFA)",
+      "Anggaran buku, sertifikasi cloud, dan konferensi teknologi",
+      "Asuransi kesehatan komprehensif",
+      "Bonus performa tahunan berdasarkan dampak produk"
+    ],
+    "teamLead": {
+      "name": "Dimas Nugroho",
+      "role": "Engineering Manager",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-03",
@@ -34,9 +112,48 @@
     "workType": "Remote",
     "employmentType": "Internship",
     "level": "Intern",
+    "salaryRange": "Rp 3.500.000 – Rp 5.000.000",
     "summary": "Memastikan kualitas rilis produk digital Sekolah Karir melalui pengujian otomatis end-to-end dan validasi skenario pengguna.",
     "skills": ["Playwright", "QA Automation", "API Testing", "Git"],
-    "postedAt": "2 hari lalu"
+    "postedAt": "2 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1531498860502-7c67cf02f657?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sesi bug bashing lintas tim sebelum rilis fitur"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+        "caption": "Mentoring QA automation menggunakan Playwright"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+        "caption": "Kolaborasi harian tim Engineering secara remote"
+      }
+    ],
+    "responsibilities": [
+      "Menyusun test plan dan test case komprehensif berdasarkan spesifikasi fitur produk.",
+      "Menjalankan pengujian manual maupun otomatis (E2E menggunakan Playwright) pada web dan API.",
+      "Mendokumentasikan laporan bug secara terstruktur dan berkolaborasi dengan developer hingga perbaikan tuntas.",
+      "Melakukan regression testing sebelum proses deployment ke lingkungan produksi."
+    ],
+    "requirements": [
+      "Mahasiswa tingkat akhir atau lulusan baru di bidang Ilmu Komputer / Sistem Informasi atau setara.",
+      "Memahami dasar pengujian perangkat lunak (black-box testing, API testing dengan Postman).",
+      "Memiliki ketelitian tinggi, pola pikir analitis, dan komunikasi yang jelas.",
+      "Nilai tambah jika pernah mencoba Playwright, Cypress, atau Selenium."
+    ],
+    "benefits": [
+      "Uang saku bulanan kompetitif & sertifikat magang resmi",
+      "Bimbingan langsung dari Senior QA & Frontend Engineer",
+      "Jam kerja fleksibel yang ramah bagi mahasiswa tingkat akhir",
+      "Peluang direkrut menjadi Full-time Engineer setelah lulus"
+    ],
+    "teamLead": {
+      "name": "Nadia Putri",
+      "role": "Senior QA Lead",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-04",
@@ -47,9 +164,48 @@
     "workType": "Hybrid",
     "employmentType": "Full-time",
     "level": "Junior / Entry Level",
+    "salaryRange": "Rp 9.000.000 – Rp 13.000.000",
     "summary": "Menerjemahkan kebutuhan pengguna dan objektif bisnis menjadi spesifikasi fitur produk yang berdampak nyata bagi pencari kerja.",
     "skills": ["Product Discovery", "Agile Scrum", "Analytics", "User Stories"],
-    "postedAt": "2 hari lalu"
+    "postedAt": "2 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+        "caption": "Workshop prioritas fitur & product roadmap"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sesi user interview bersama talenta SekolahKarir"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sinkronisasi sprint bersama tim Design & Tech"
+      }
+    ],
+    "responsibilities": [
+      "Melakukan riset pengguna dan analisis data untuk mengidentifikasi peluang peningkatan produk SekolahKarir.",
+      "Menyusun Product Requirement Document (PRD) dan user stories yang jelas serta terukur.",
+      "Memfasilitasi ritual Agile/Scrum bersama tim Engineering dan Product Design.",
+      "Memantau metrik keberhasilan fitur pasca-rilis dan melakukan iterasi berkelanjutan."
+    ],
+    "requirements": [
+      "Pengalaman 1 tahun di bidang Product Management atau lulusan baru dengan portofolio proyek produk digital.",
+      "Kemampuan komunikasi, problem-solving, dan penulisan dokumentasi produk yang terstruktur.",
+      "Terbiasa membaca data analitik produk dan menerjemahkannya menjadi rekomendasi aksi.",
+      "Memiliki empati tinggi terhadap permasalahan pencari kerja dan talenta muda Indonesia."
+    ],
+    "benefits": [
+      "Akses penuh ke seluruh program dan jaringan mentor SekolahKarir",
+      "Asuransi kesehatan & tunjangan transportasi/komunikasi",
+      "Lingkungan kerja kolaboratif dengan otonomi kepemilikan produk tinggi",
+      "Anggaran pengembangan diri dan pelatihan manajemen produk"
+    ],
+    "teamLead": {
+      "name": "Arif Budiman",
+      "role": "Head of Product",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-05",
@@ -60,9 +216,48 @@
     "workType": "On-site",
     "employmentType": "Full-time",
     "level": "Mid-Level",
+    "salaryRange": "Rp 9.500.000 – Rp 13.500.000",
     "summary": "Menyelaraskan operasional ekosistem produk edukasi dengan standar industri terkini agar lulusan siap terjun ke dunia kerja.",
     "skills": ["Curriculum Ops", "Notion", "Process Ops", "Stakeholder Mgmt"],
-    "postedAt": "3 hari lalu"
+    "postedAt": "3 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+        "caption": "Koordinasi kurikulum bersama praktisi industri"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+        "caption": "Evaluasi alur operasional program karir"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+        "caption": "Diskusi lintas fungsi Product & Operations"
+      }
+    ],
+    "responsibilities": [
+      "Merancang dan mengoptimalkan SOP operasional produk pembelajaran serta simulasi proyek karir.",
+      "Mengelola umpan balik dari peserta dan mentor untuk disalurkan menjadi perbaikan fitur produk.",
+      "Membangun pusat dokumentasi internal dan otomasi alur kerja operasional menggunakan Notion.",
+      "Memastikan kesiapan operasional setiap peluncuran fitur maupun program batch baru."
+    ],
+    "requirements": [
+      "Pengalaman minimal 1–2 tahun di bidang Product Operations, EdTech Operations, atau Project Management.",
+      "Sangat terorganisir, detail-oriented, dan mahir menyusun sistem kerja di Notion/Spreadsheet.",
+      "Komunikator ulung yang mampu menjembatani tim teknis dan tim non-teknis.",
+      "Memiliki ketertarikan kuat pada dunia pendidikan teknologi dan pengembangan karir."
+    ],
+    "benefits": [
+      "Makan siang disediakan di kantor & fasilitas ruang kerja nyaman di Jakarta",
+      "Asuransi kesehatan lengkap & cuti tahunan fleksibel",
+      "Kesempatan berjejaring langsung dengan puluhan hiring partner industri",
+      "Tunjangan pengembangan karir tahunan"
+    ],
+    "teamLead": {
+      "name": "Arif Budiman",
+      "role": "Head of Product",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-06",
@@ -73,9 +268,48 @@
     "workType": "Remote",
     "employmentType": "Full-time",
     "level": "Mid-Level",
+    "salaryRange": "Rp 10.000.000 – Rp 15.000.000",
     "summary": "Merancang pengalaman belajar dan persiapan karir yang intuitif melalui riset pengguna, wireframing, hingga pemeliharaan design system.",
     "skills": ["Figma", "Design Systems", "Prototyping", "Usability Testing"],
-    "postedAt": "3 hari lalu"
+    "postedAt": "3 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80",
+        "caption": "Eksplorasi wireframe & komponen Design System di Figma"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sesi design critique mingguan bersama tim produk"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
+        "caption": "Pengujian usability prototipe interaktif"
+      }
+    ],
+    "responsibilities": [
+      "Merancang alur pengguna (user flow), wireframe, dan antarmuka high-fidelity untuk ekosistem produk SekolahKarir.",
+      "Mengembangkan serta menjaga konsistensi komponen Design System SekolahKarir di Figma.",
+      "Merencanakan dan memandu sesi Usability Testing untuk memvalidasi solusi desain.",
+      "Berdampingan dengan Frontend Engineer saat tahap handoff dan QA visual."
+    ],
+    "requirements": [
+      "Pengalaman minimal 2 tahun sebagai UI/UX atau Product Designer dengan portofolio produk web/mobile nyata.",
+      "Mahir menggunakan Figma (Auto Layout, Variables, Component Properties, dan Prototyping).",
+      "Memahami prinsip aksesibilitas web (WCAG), hierarki tipografi, dan desain responsif.",
+      "Terbiasa mendasarkan keputusan desain pada temuan riset pengguna maupun data."
+    ],
+    "benefits": [
+      "Bekerja 100% Remote dengan jam kerja yang sehat",
+      "Langganan tool desain & aset kreatif ditanggung perusahaan",
+      "Asuransi kesehatan & tunjangan penunjang kerja dari rumah",
+      "Budaya design critique yang suportif dan berorientasi pertumbuhan"
+    ],
+    "teamLead": {
+      "name": "kirana Larasati",
+      "role": "Lead Product Designer",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-07",
@@ -86,9 +320,48 @@
     "workType": "Remote",
     "employmentType": "Internship",
     "level": "Intern",
+    "salaryRange": "Rp 3.000.000 – Rp 4.500.000",
     "summary": "Mengembangkan identitas visual kampanye edukasi dan aset komunikasi kreatif Sekolah Karir di berbagai kanal digital.",
     "skills": ["Brand Identity", "Figma", "Illustration", "Motion Basics"],
-    "postedAt": "4 hari lalu"
+    "postedAt": "4 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
+        "caption": "Brainstorming identitas visual kampanye Batch baru"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80",
+        "caption": "Pembuatan ilustrasi & aset media sosial edukatif"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+        "caption": "Kolaborasi kreatif tim Design & Marketing"
+      }
+    ],
+    "responsibilities": [
+      "Merancang materi visual untuk media sosial, kampanye program karir, webinar, dan halaman arahan.",
+      "Menjaga konsistensi identitas visual (warna, tipografi Urbanist, dan gaya ilustrasi) SekolahKarir.",
+      "Berkolaborasi dengan tim Marketing dalam menerjemahkan materi edukasi karir menjadi infografis menarik.",
+      "Mengeksplorasi format visual baru termasuk micro-motion atau carousel interaktif."
+    ],
+    "requirements": [
+      "Mahasiswa aktif atau fresh graduate jurusan DKV, Desain Grafis, atau bidang terkait.",
+      "Memiliki portofolio desain visual yang menunjukkan kepekaan komposisi, warna, dan tipografi.",
+      "Mahir menggunakan Figma dan Adobe Creative Suite (Illustrator/Photoshop).",
+      "Kreatif, terbuka terhadap masukan, dan mampu bekerja sesuai tenggat waktu."
+    ],
+    "benefits": [
+      "Uang saku bulanan & fleksibilitas kerja Remote",
+      "Mentoring portofolio langsung bersama Lead Designer",
+      "Akses gratis ke seluruh kelas dan bootcamp SekolahKarir",
+      "Sertifikat magang & surat rekomendasi karir"
+    ],
+    "teamLead": {
+      "name": "Kirana Larasati",
+      "role": "Lead Product Designer",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-08",
@@ -99,9 +372,48 @@
     "workType": "Hybrid",
     "employmentType": "Full-time",
     "level": "Junior / Entry Level",
+    "salaryRange": "Rp 8.000.000 – Rp 11.500.000",
     "summary": "Mengolah data progres peserta dan tingkat penyerapan lulusan menjadi insight strategis untuk peningkatan kualitas program.",
     "skills": ["SQL", "Python", "Looker Studio", "Cohort Analysis"],
-    "postedAt": "5 hari lalu"
+    "postedAt": "5 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        "caption": "Visualisasi metrik kelulusan & penyerapan karir"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+        "caption": "Presentasi insight bulanan kepada tim manajemen"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+        "caption": "Diskusi pemodelan data bersama Analytics Engineer"
+      }
+    ],
+    "responsibilities": [
+      "Menganalisis data perjalanan belajar peserta hingga keberhasilan mendapatkan pekerjaan (career outcomes).",
+      "Membangun dan memelihara dashboard interaktif di Looker Studio untuk tim Product dan Operations.",
+      "Melakukan analisis kohort (cohort analysis) dan eksperimen A/B guna meningkatkan retensi pengguna.",
+      "Menyajikan rekomendasi berbasis data secara ringkas dan mudah dipahami oleh pemangku kepentingan."
+    ],
+    "requirements": [
+      "Menguasai SQL untuk ekstraksi dan agregasi data serta Python/Pandas untuk eksplorasi data.",
+      "Terbiasa membuat visualisasi data yang informatif menggunakan Looker Studio, Tableau, atau Metabase.",
+      "Memiliki ketajaman bisnis dan kemampuan bercerita dengan data (data storytelling).",
+      "Teliti dalam memvalidasi kebersihan dan akurasi angka."
+    ],
+    "benefits": [
+      "Skema kerja Hybrid fleksibel & fasilitas kerja modern",
+      "Asuransi kesehatan & tunjangan kursus sains data",
+      "Kesempatan mengolah dataset berdampak nyata bagi ribuan pencari kerja",
+      "Lingkungan kerja berbasis bukti dan eksperimen"
+    ],
+    "teamLead": {
+      "name": "Farhan Hakim",
+      "role": "Head of Data & Analytics",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-09",
@@ -112,9 +424,48 @@
     "workType": "Remote",
     "employmentType": "Full-time",
     "level": "Mid-Level",
+    "salaryRange": "Rp 11.500.000 – Rp 16.000.000",
     "summary": "Membangun pipeline transformasi data yang bersih, terdokumentasi, dan siap pakai bagi tim Product maupun operasional.",
     "skills": ["dbt", "BigQuery", "SQL", "Data Modeling"],
-    "postedAt": "6 hari lalu"
+    "postedAt": "6 hari lalu",
+    "coverImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "caption": "Arsitektur data warehouse & pipeline dbt"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sinkronisasi definisi metrik tunggal perusahaan"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
+        "caption": "Kolaborasi tim Data & Engineering"
+      }
+    ],
+    "responsibilities": [
+      "Merancang dan memelihara model data modular di BigQuery menggunakan dbt (data build tool).",
+      "Menerapkan pengujian kualitas data otomatis (data quality tests) dan dokumentasi lini data.",
+      "Berkolaborasi dengan Backend Engineer dan Data Analyst untuk menyatukan sumber kebenaran metrik (single source of truth).",
+      "Mengoptimalkan biaya komputasi dan kecepatan pemrosesan data warehouse."
+    ],
+    "requirements": [
+      "Pengalaman minimal 2 tahun di bidang Data Engineering, BI Engineering, atau Analytics Engineering.",
+      "Sangat mahir menulis SQL tingkat lanjut dan berpengalaman menggunakan dbt serta Google BigQuery.",
+      "Memahami praktik software engineering terbaik untuk data (Git workflow, CI/CD, modularitas).",
+      "Proaktif dalam mengidentifikasi bottleneck performa pipeline data."
+    ],
+    "benefits": [
+      "Kerja Remote 100% dari seluruh Indonesia",
+      "Tunjangan perangkat keras, internet, dan sertifikasi Google Cloud",
+      "Asuransi kesehatan komprehensif",
+      "Jam kerja fleksibel berbasis capaian"
+    ],
+    "teamLead": {
+      "name": "Farhan Hakim",
+      "role": "Head of Data & Analytics",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80"
+    }
   },
   {
     "id": "role-10",
@@ -125,8 +476,47 @@
     "workType": "Hybrid",
     "employmentType": "Full-time",
     "level": "Junior / Entry Level",
+    "salaryRange": "Rp 7.500.000 – Rp 11.000.000",
     "summary": "Memperluas jangkauan komunitas pembelajar Sekolah Karir melalui strategi konten organik, kolaborasi kampus, dan aktivasi event.",
     "skills": ["Growth Marketing", "Copywriting", "SEO", "Community"],
-    "postedAt": "1 minggu lalu"
+    "postedAt": "1 minggu lalu",
+    "coverImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80",
+        "caption": "Event komunitas & career talk SekolahKarir"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80",
+        "caption": "Sesi perencanaan kampanye pertumbuhan"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
+        "caption": "Kolaborasi bersama mitra universitas & komunitas"
+      }
+    ],
+    "responsibilities": [
+      "Merancang dan mengeksekusi eksperimen kampanye akuisisi pengguna di berbagai kanal organik dan komunitas.",
+      "Menulis copywriting yang relevan dan persuasif untuk halaman arahan, buletin, serta media sosial.",
+      "Mengelola kemitraan strategis dengan organisasi kampus dan komunitas talenta digital.",
+      "Memantau metrik konversi corong pemasaran (funnel conversion) dan mengoptimalkan kampanye mingguan."
+    ],
+    "requirements": [
+      "Pengalaman minimal 1 tahun di bidang Growth Marketing, Digital Marketing, atau Community Management.",
+      "Memiliki kemampuan copywriting bahasa Indonesia yang kuat dan memahami dasar SEO.",
+      "Senang bereksperimen, berorientasi pada metrik pertumbuhan, dan adaptif terhadap tren.",
+      "Antusias dalam membangun komunitas pembelajar dan pencari kerja."
+    ],
+    "benefits": [
+      "Skema kerja Hybrid & lingkungan tim kreatif yang dinamis",
+      "Bonus insentif pencapaian target kampanye pertumbuhan",
+      "Asuransi kesehatan & akses penuh ke jaringan mentor industri",
+      "Dukungan penuh untuk menghadiri event dan konferensi pemasaran"
+    ],
+    "teamLead": {
+      "name": "Sinta Maharani",
+      "role": "Growth & Marketing Lead",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"
+    }
   }
 ]
