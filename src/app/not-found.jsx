@@ -25,7 +25,7 @@ export default function NotFound() {
             </div>
 
             <div className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#0057FF]">
-              <span>Error 404 -Halaman Tidak Ditemukan</span>
+              <span>Error 404 - Halaman Tidak Ditemukan</span>
             </div>
 
             <h1 className="mt-3 font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
