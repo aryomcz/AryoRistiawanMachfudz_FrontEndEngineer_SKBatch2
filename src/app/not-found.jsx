@@ -68,13 +68,6 @@ export default function NotFound() {
           </div>
         </div>
       </main>
-
-      <footer className="mt-auto border-t border-slate-200/80 bg-white py-6">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
-          <p>© 2026 SekolahKarir. Seluruh hak cipta dilindungi.</p>
-          <p>Frontend Engineer Mini Assignment -Batch 2</p>
-        </div>
-      </footer>
     </div>
   );
 }
