@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -222,40 +223,6 @@ function isNavItemActive(item, pathname) {
   });
 }
 
-function ChevronDownIcon({ className = "h-3.5 w-3.5" }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  );
-}
-
-function ChevronRightIcon({ className = "h-4 w-4" }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m9 18 6-6-6-6" />
-    </svg>
-  );
-}
-
 function HeaderContent({ pathname }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDrawerMounted, setIsDrawerMounted] = useState(false);
@@ -379,9 +346,10 @@ function HeaderContent({ pathname }) {
                   >
                     <span>{item.label}</span>
                     {item.hasDropdown && (
-                      <ChevronDownIcon
+                      <ChevronDown
+                        size={14}
                         className={cn(
-                          "h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180",
+                          "transition-transform duration-200 group-hover:rotate-180",
                           isActive
                             ? "text-slate-900"
                             : "text-slate-500 group-hover:text-slate-900"
@@ -462,20 +430,7 @@ function HeaderContent({ pathname }) {
               onClick={handleOpenMobileMenu}
               className="inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#DCE3EC] text-slate-900 transition-colors duration-150 hover:bg-[#CED7E4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 sm:h-11 sm:w-11 lg:hidden"
             >
-              <svg
-                aria-hidden="true"
-                className="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="4" y1="7" x2="20" y2="7" />
-                <line x1="4" y1="12" x2="20" y2="12" />
-                <line x1="4" y1="17" x2="20" y2="17" />
-              </svg>
+              <Menu size={16} />
             </button>
           </div>
         </div>
@@ -534,19 +489,7 @@ function HeaderContent({ pathname }) {
                 onClick={handleCloseMobileMenu}
                 className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-slate-100 text-slate-800 border border-slate-300 shadow-xs transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]"
               >
-                <svg
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
+                <X size={16} />
               </button>
             </div>
 
@@ -612,9 +555,10 @@ function HeaderContent({ pathname }) {
                                   {item.description}
                                 </p>
                               </div>
-                              <ChevronRightIcon
+                              <ChevronRight
+                                size={16}
                                 className={cn(
-                                  "h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5",
+                                  "shrink-0 transition-transform group-hover:translate-x-0.5",
                                   isItemActive
                                     ? "text-[#0057FF]"
                                     : "text-slate-400 group-hover:text-[#0057FF]"
