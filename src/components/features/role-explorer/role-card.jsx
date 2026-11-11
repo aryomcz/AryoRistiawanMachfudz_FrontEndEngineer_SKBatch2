@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 
 const WORK_TYPE_VARIANT = {
   Remote: "success",
@@ -117,19 +118,7 @@ export function RoleCard({ role }) {
             className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#EDF2F7] px-3.5 py-1.5 text-xs font-bold text-slate-800 transition-colors duration-150 group-hover:bg-[#0057FF] group-hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2"
           >
             <span>Lihat Detail</span>
-            <svg
-              aria-hidden="true"
-              className="h-3.5 w-3.5 shrink-0 transition-transform duration-150 motion-reduce:transition-none group-hover:translate-x-0.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
+           <ArrowRight size={14} />
           </Link>
         </div>
       </div>
