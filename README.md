@@ -1,6 +1,6 @@
-# SekolahKarir — Role Explorer
+# SekolahKarir - Role Explorer
 
-Aplikasi web **Role Explorer** responsif untuk **Mini Assignment — Frontend Engineer (SekolahKarir Batch 2)**. Proyek ini dirancang dengan fokus pada **ketepatan eksekusi brief**, **kualitas _product reasoning_**, serta keseimbangan antara **struktur kode yang _scalable_**, **detail UX yang matang**, dan **pengelolaan _state_ yang reliabel**.
+Aplikasi web **Role Explorer** responsif untuk **Mini Assignment - Frontend Engineer (SekolahKarir Batch 2)**. Proyek ini dirancang dengan fokus pada **ketepatan eksekusi brief**, **kualitas _product reasoning_**, serta keseimbangan antara **struktur kode yang _scalable_**, **detail UX yang matang**, dan **pengelolaan _state_ yang reliabel**.
 
 🔗 **Live Demo**: _https://sekolahkarir-role.vercel.app/_
 
