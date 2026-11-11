@@ -1,3 +1,4 @@
+import { ArrowLeft, CircleX } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -8,20 +9,7 @@ export default function NotFound() {
           <div className="rounded-2xl border border-slate-200/80 bg-white px-6 py-12 text-center sm:px-10 sm:py-14">
             {/* 404 Badge & Icon */}
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 text-[#0057FF]">
-              <svg
-                aria-hidden="true"
-                className="h-8 w-8"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="m15 9-6 6" />
-                <path d="m9 9 6 6" />
-              </svg>
+              <CircleX size={32} />
             </div>
 
             <div className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#0057FF]">
@@ -46,19 +34,7 @@ export default function NotFound() {
                 href="/"
                 className="inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#0057FF] px-6 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-150 hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2 sm:w-auto"
               >
-                <svg
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m12 19-7-7 7-7" />
-                  <path d="M19 12H5" />
-                </svg>
+                <ArrowLeft size={16} />
                 Kembali ke Karir
               </Link>
             </div>
