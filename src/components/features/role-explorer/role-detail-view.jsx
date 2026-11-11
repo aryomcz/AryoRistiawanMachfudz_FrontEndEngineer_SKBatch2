@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { RoleCard } from "@/components/features/role-explorer/role-card";
 import { SIMULATED_LOADING_DELAY_MS } from "@/lib/constants";
 import { RoleDetailSkeleton } from "@/app/roles/[id]/loading";
-import { ArrowLeft, MoveRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MapPin, MoveRight } from "lucide-react";
 
 const WORK_TYPE_GLASS_VARIANT = {
   Remote: "glass-success",
@@ -108,19 +108,7 @@ export function RoleDetailView({ role, relatedRoles }) {
 
             <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs font-medium text-slate-200 sm:text-sm">
               <span className="inline-flex items-center gap-1.5">
-                <svg
-                  aria-hidden="true"
-                  className="h-4 w-4 text-sky-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
+                <MapPin className="text-sky-400" size={16} />
                 {role.location}
               </span>
               <span aria-hidden="true">•</span>
@@ -227,17 +215,7 @@ export function RoleDetailView({ role, relatedRoles }) {
                     aria-hidden="true"
                     className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-blue-200/60 bg-blue-500/10 text-[#0057FF] backdrop-blur-xs"
                   >
-                    <svg
-                      className="h-3.5 w-3.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
+                    <Check size={14} className="font-bold" />
                   </span>
                   <span>{item}</span>
                 </li>
@@ -281,17 +259,7 @@ export function RoleDetailView({ role, relatedRoles }) {
                     aria-hidden="true"
                     className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-200/60 bg-emerald-500/15 text-emerald-700 backdrop-blur-xs"
                   >
-                    <svg
-                      className="h-3.5 w-3.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
+                    <Check size={14} className="font-bold" />
                   </span>
                   <span className="text-xs font-semibold leading-relaxed text-slate-700 sm:text-sm">
                     {benefit}
@@ -356,19 +324,7 @@ export function RoleDetailView({ role, relatedRoles }) {
                   className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#0057FF] px-5 py-3 text-sm font-bold text-white shadow-xs transition-colors hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2"
                 >
                   Lamar Posisi Ini
-                  <svg
-                    aria-hidden="true"
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
+                 <ArrowRight size={16} />
                 </Link>
 
                 <Link

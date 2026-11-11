@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 const WORK_TYPE_VARIANT = {
   Remote: "success",
@@ -97,19 +97,7 @@ export function RoleCard({ role }) {
         {/* Clean 2-Column Footer: Location (Left) + Pill CTA (Right) */}
         <div className="mt-5 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
           <div className="flex min-w-0 items-center gap-1.5 text-xs font-semibold text-slate-500">
-            <svg
-              aria-hidden="true"
-              className="h-4 w-4 shrink-0 text-slate-400"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+           <MapPin size={16} className="text-slate-400"/>
             <span className="truncate">{role.location}</span>
           </div>
 
