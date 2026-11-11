@@ -22,9 +22,7 @@ export default function HomePage() {
             <span className="text-[#0066FF]">Karir</span>
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Bergabunglah bersama tim lintas disiplin dalam membangun produk
-            edukasi dan akselerasi karir. Pilih departemen di bawah ini untuk
-            menyaring posisi yang sesuai dengan keahlianmu.
+            Pilih departemen atau cari berdasarkan keahlian untuk melihat posisi yang sedang dibuka.
           </p>
         </section>
 

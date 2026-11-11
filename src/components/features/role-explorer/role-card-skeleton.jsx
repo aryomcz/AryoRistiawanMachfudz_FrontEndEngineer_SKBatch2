@@ -4,42 +4,31 @@ export function RoleCardSkeleton() {
   return (
     <div
       aria-hidden="true"
-      className="flex h-full min-h-[296px] flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 shadow-2xs"
+      className="flex h-full min-h-[240px] flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-6"
     >
       <div>
-        {/* Top Row: Department + WorkType badges */}
+        {/* Chunk 1: Top row + Title */}
         <div className="flex items-center justify-between gap-2">
-          <Skeleton className="h-6 w-28 rounded-full" />
-          <Skeleton className="h-6 w-20 rounded-full" />
+          <Skeleton className="h-5 w-24 rounded-md" />
+          <Skeleton className="h-4 w-16 rounded" />
         </div>
+        <Skeleton className="mt-2.5 h-6 w-3/4 rounded-md" />
 
-        {/* Title & Level Subtitle */}
-        <div className="mt-4 space-y-2">
-          <Skeleton className="h-6 w-3/4 rounded-lg" />
-          <Skeleton className="h-4 w-3/5 rounded-md" />
-        </div>
-
-        {/* 2-line Summary */}
-        <div className="mt-3.5 space-y-2">
-          <Skeleton className="h-4 w-full rounded-md" />
-          <Skeleton className="h-4 w-11/12 rounded-md" />
+        {/* Chunk 2: Inline metadata bar + 2 summary lines */}
+        <Skeleton className="mt-2.5 h-4 w-3/5 rounded" />
+        <div className="mt-3 space-y-2">
+          <Skeleton className="h-4 w-full rounded" />
+          <Skeleton className="h-4 w-4/5 rounded" />
         </div>
       </div>
 
-      <div className="mt-5">
-        {/* Skill Pills */}
+      {/* Chunk 3: Footer with 2 skill chip skeletons + 1 action link skeleton */}
+      <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-4">
         <div className="flex items-center gap-1.5">
-          <Skeleton className="h-6 w-16 rounded-full" />
-          <Skeleton className="h-6 w-20 rounded-full" />
-          <Skeleton className="h-6 w-24 rounded-full" />
-          <Skeleton className="h-6 w-9 rounded-full" />
+          <Skeleton className="h-5 w-14 rounded" />
+          <Skeleton className="h-5 w-16 rounded" />
         </div>
-
-        {/* Footer Metadata */}
-        <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
-          <Skeleton className="h-4 w-32 rounded-md" />
-          <Skeleton className="h-7 w-28 rounded-full" />
-        </div>
+        <Skeleton className="h-7 w-28 rounded-full" />
       </div>
     </div>
   );
