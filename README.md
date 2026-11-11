@@ -124,7 +124,7 @@ Sesuai ketentuan pada _brief assignment_, pengerjaan proyek ini menggunakan bant
 
 - **Google Gemini & Google Antigravity**:
   - Digunakan untuk berdiskusi mengenai _edge cases_ UX, melakukan _scaffolding_ komponen JSX, menyusun _mock data_ posisi karir yang realistis bagi ekosistem **SekolahKarir**, serta memvalidasi praktik terbaik Next.js App Router (seperti `<Suspense>` boundary pada `useSearchParams()` dan `generateStaticParams()`).
-  - Seluruh keputusan produk, arsitektur _folder_, logika _filtering & state synchronization_, serta struktur kode diperiksa, dipahami sepenuhnya, dan dapat dijelaskan.
+  - Seluruh keputusan produk, arsitektur _folder_, logika _filtering & state synchronization_, serta struktur kode diperiksa, dipahami sepenuhnya, dan dapat dijelaskan oleh saya.
 
 ---
 
