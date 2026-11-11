@@ -1,4 +1,4 @@
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { DEFAULT_DEPARTMENT } from "@/lib/constants";
 import { EmptyState } from "@/components/shared/empty-state";
 import { RoleCard } from "./role-card";
@@ -73,19 +73,7 @@ export function RoleGrid({
             onClick={onResetFilter}
             className="inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-[#0057FF] transition-colors hover:bg-blue-50 hover:text-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF]"
           >
-            <svg
-              aria-hidden="true"
-              className="h-3.5 w-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
+            <X size={14}/>
             Reset filter
           </button>
         )}
