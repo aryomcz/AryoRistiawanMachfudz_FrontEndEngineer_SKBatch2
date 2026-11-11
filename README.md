@@ -26,7 +26,7 @@ Brief menekankan bahwa penilaian tidak dilihat dari seberapa kompleks solusi, me
 - **Library UI**: React 19 (JavaScript / JSX)
 - **Styling**: Tailwind CSS v4
 - **Typography**: `Urbanist` (`400`, `500`, `600`, `700`, `800`) via `next/font/google` (Menyesuaikan dengan website _https://sekolahkarir.id/_)
-- **Icons & Media**: `lucide-react`, Inline SVG kustom, & `next/image` teroptimasi
+- **Icons & Media**: `lucide-react` & `next/image` teroptimasi
 
 ---
 
