@@ -40,7 +40,7 @@ export default async function RoleDetailPage({ params }) {
   const relatedRoles = getRelatedRoles(role.id, role.department, 2);
 
   return (
-    <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-hidden">
+    <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-clip">
       <RoleDetailView role={role} relatedRoles={relatedRoles} />
     </div>
   );

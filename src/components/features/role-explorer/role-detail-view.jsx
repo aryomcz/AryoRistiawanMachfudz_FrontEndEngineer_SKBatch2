@@ -40,7 +40,7 @@ export function RoleDetailView({ role, relatedRoles }) {
   const workTypeDotColor = WORK_TYPE_DOT[role.workType] || "bg-slate-300";
 
   return (
-    <main className="mx-auto w-full max-w-6xl min-w-0 flex-1 px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+    <div className="mx-auto w-full max-w-6xl min-w-0 flex-1 px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
       {/* Top Breadcrumb & Back Navigation */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <Link
@@ -314,118 +314,116 @@ export function RoleDetailView({ role, relatedRoles }) {
         </div>
 
         {/* Right Sidebar: Sticky Summary Card & Hiring Manager Profile */}
-        <aside className="space-y-6 lg:col-span-1">
-          <div className="sticky top-24 space-y-6">
-            {/* Role Summary & Apply Box */}
-            <div className="rounded-3xl border border-white/90 bg-[#EDF2F7]/85 p-3 shadow-2xs backdrop-blur-md sm:p-4">
-              <div className="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6">
-                <h2 className="font-heading text-lg font-bold text-slate-900">
-                  Ringkasan Posisi
-                </h2>
+        <aside className="space-y-6 lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
+          {/* Role Summary & Apply Box */}
+          <div className="rounded-3xl border border-white/90 bg-[#EDF2F7]/85 p-3 shadow-2xs backdrop-blur-md sm:p-4">
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6">
+              <h2 className="font-heading text-lg font-bold text-slate-900">
+                Ringkasan Posisi
+              </h2>
 
-                <dl className="mt-4 space-y-3.5 text-sm">
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <dt className="font-medium text-slate-500">Departemen</dt>
-                    <dd className="font-bold text-slate-900">
-                      {role.departmentLabel}
-                    </dd>
-                  </div>
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <dt className="font-medium text-slate-500">Sistem Kerja</dt>
-                    <dd className="font-bold text-slate-900">
-                      {role.workType}
-                    </dd>
-                  </div>
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <dt className="font-medium text-slate-500">Status</dt>
-                    <dd className="font-bold text-slate-900">
-                      {role.employmentType}
-                    </dd>
-                  </div>
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <dt className="font-medium text-slate-500">Level</dt>
-                    <dd className="font-bold text-slate-900">{role.level}</dd>
-                  </div>
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <dt className="font-medium text-slate-500">Lokasi</dt>
-                    <dd className="font-bold text-slate-900">
-                      {role.location}
-                    </dd>
-                  </div>
-                  <div className="flex flex-col gap-1 pt-1">
-                    <dt className="text-xs font-medium text-slate-500">
-                      Estimasi Kompensasi Bulanan
-                    </dt>
-                    <dd className="font-heading text-base font-extrabold text-[#0057FF]">
-                      {role.salaryRange}
-                    </dd>
-                  </div>
-                </dl>
-
-                <div className="mt-6 space-y-2.5">
-                  <Link
-                    href="/masuk"
-                    className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#0057FF] px-5 py-3 text-sm font-bold text-white shadow-xs transition-colors hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2"
-                  >
-                    Lamar Posisi Ini
-                    <svg
-                      aria-hidden="true"
-                      className="h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </Link>
-
-                  <Link
-                    href="/"
-                    className="flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-[#EDF2F7] px-5 py-2.5 text-xs font-bold text-slate-700 transition-colors hover:bg-[#DCE3EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 sm:text-sm"
-                  >
-                    Jelajahi Posisi Lainnya
-                  </Link>
+              <dl className="mt-4 space-y-3.5 text-sm">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <dt className="font-medium text-slate-500">Departemen</dt>
+                  <dd className="font-bold text-slate-900">
+                    {role.departmentLabel}
+                  </dd>
                 </div>
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <dt className="font-medium text-slate-500">Sistem Kerja</dt>
+                  <dd className="font-bold text-slate-900">
+                    {role.workType}
+                  </dd>
+                </div>
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <dt className="font-medium text-slate-500">Status</dt>
+                  <dd className="font-bold text-slate-900">
+                    {role.employmentType}
+                  </dd>
+                </div>
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <dt className="font-medium text-slate-500">Level</dt>
+                  <dd className="font-bold text-slate-900">{role.level}</dd>
+                </div>
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <dt className="font-medium text-slate-500">Lokasi</dt>
+                  <dd className="font-bold text-slate-900">
+                    {role.location}
+                  </dd>
+                </div>
+                <div className="flex flex-col gap-1 pt-1">
+                  <dt className="text-xs font-medium text-slate-500">
+                    Estimasi Kompensasi Bulanan
+                  </dt>
+                  <dd className="font-heading text-base font-extrabold text-[#0057FF]">
+                    {role.salaryRange}
+                  </dd>
+                </div>
+              </dl>
+
+              <div className="mt-6 space-y-2.5">
+                <Link
+                  href="/masuk"
+                  className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#0057FF] px-5 py-3 text-sm font-bold text-white shadow-xs transition-colors hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2"
+                >
+                  Lamar Posisi Ini
+                  <svg
+                    aria-hidden="true"
+                    className="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Link>
+
+                <Link
+                  href="/"
+                  className="flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-[#EDF2F7] px-5 py-2.5 text-xs font-bold text-slate-700 transition-colors hover:bg-[#DCE3EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 sm:text-sm"
+                >
+                  Jelajahi Posisi Lainnya
+                </Link>
               </div>
             </div>
-
-            {/* Team Lead / Hiring Manager Dummy Profile Card */}
-            {role.teamLead && (
-              <div className="rounded-3xl border border-slate-200/90 bg-white p-5 shadow-2xs sm:p-6">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                  Hiring Lead &amp; Mentor
-                </p>
-                <div className="mt-3.5 flex items-center gap-3.5">
-                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-blue-100 bg-slate-100">
-                    <Image
-                      src={role.teamLead.avatar}
-                      alt={role.teamLead.name}
-                      fill
-                      sizes="48px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate font-heading text-base font-bold text-slate-900">
-                      {role.teamLead.name}
-                    </p>
-                    <p className="truncate text-xs font-medium text-[#0057FF]">
-                      {role.teamLead.role}
-                    </p>
-                  </div>
-                </div>
-                <p className="mt-3.5 rounded-2xl bg-[#F8FAFC] p-3.5 text-xs italic leading-relaxed text-slate-600">
-                  &ldquo;Kami mencari rekan tim yang tidak hanya andal secara
-                  teknis, tetapi juga peduli pada dampak nyata bagi kemajuan
-                  karir talenta muda Indonesia.&rdquo;
-                </p>
-              </div>
-            )}
           </div>
+
+          {/* Team Lead / Hiring Manager Dummy Profile Card */}
+          {role.teamLead && (
+            <div className="rounded-3xl border border-slate-200/90 bg-white p-5 shadow-2xs sm:p-6">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Hiring Lead &amp; Mentor
+              </p>
+              <div className="mt-3.5 flex items-center gap-3.5">
+                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-blue-100 bg-slate-100">
+                  <Image
+                    src={role.teamLead.avatar}
+                    alt={role.teamLead.name}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="truncate font-heading text-base font-bold text-slate-900">
+                    {role.teamLead.name}
+                  </p>
+                  <p className="truncate text-xs font-medium text-[#0057FF]">
+                    {role.teamLead.role}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-3.5 rounded-2xl bg-[#F8FAFC] p-3.5 text-xs italic leading-relaxed text-slate-600">
+                &ldquo;Kami mencari rekan tim yang tidak hanya andal secara
+                teknis, tetapi juga peduli pada dampak nyata bagi kemajuan
+                karir talenta muda Indonesia.&rdquo;
+              </p>
+            </div>
+          )}
         </aside>
       </div>
 
@@ -456,6 +454,6 @@ export function RoleDetailView({ role, relatedRoles }) {
           </div>
         </section>
       )}
-    </main>
+    </div>
   );
 }

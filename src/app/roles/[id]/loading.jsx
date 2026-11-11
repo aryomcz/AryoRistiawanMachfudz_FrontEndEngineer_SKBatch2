@@ -87,7 +87,7 @@ export function RoleDetailSkeleton() {
         </div>
 
         {/* Right Sidebar Skeleton */}
-        <aside className="space-y-6 lg:col-span-1">
+        <aside className="space-y-6 lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-3xl border border-white/90 bg-[#EDF2F7]/85 p-3 shadow-2xs sm:p-4">
             <div className="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6">
               <Skeleton className="h-6 w-40 rounded-lg" />
@@ -133,7 +133,7 @@ export function RoleDetailSkeleton() {
 
 export default function Loading() {
   return (
-    <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-hidden">
+    <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-clip">
       <RoleDetailSkeleton />
     </div>
   );

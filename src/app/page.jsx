@@ -5,7 +5,7 @@ import { RoleExplorerFallback } from "./loading";
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-hidden">
+    <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-clip">
       <main className="mx-auto w-full max-w-6xl min-w-0 flex-1 px-4 py-6 pb-6 sm:px-6 sm:py-10 lg:px-8">
         {/* Hero Header Section */}
         <section className="mb-6 max-w-3xl sm:mb-8">
