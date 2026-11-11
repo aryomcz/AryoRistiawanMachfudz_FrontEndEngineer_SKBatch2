@@ -1,30 +1,22 @@
 import { Suspense } from "react";
-import { Search } from "lucide-react";
 import { RoleExplorer } from "@/components/features/role-explorer/role-explorer";
 import { RoleExplorerFallback } from "./loading";
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen w-full max-w-full flex-col overflow-x-clip">
-      <main className="mx-auto w-full max-w-6xl min-w-0 flex-1 px-4 py-6 pb-6 sm:px-6 sm:py-10 lg:px-8">
+    <div className="flex min-h-screen w-full max-w-full flex-col bg-slate-50 overflow-x-clip">
+      <main className="mx-auto w-full max-w-6xl min-w-0 flex-1 space-y-8 px-4 py-10 sm:px-6 md:py-14 lg:px-8">
         {/* Hero Header Section */}
-        <section className="mb-6 max-w-3xl sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-semibold text-[#0057FF]">
-            <Search
-              aria-hidden="true"
-              className="h-3.5 w-3.5 shrink-0 text-[#0057FF]"
-            />
-            <span>Eksplorasi Karir &amp; Peran</span>
-          </div>
-          <h1 className="mt-3 font-heading text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
-            Temukan Peranmu di{" "}
-            <span className="text-slate-900">Sekolah</span>
-            <span className="text-[#0066FF]">Karir</span>
+        <section className="max-w-2xl py-2 sm:py-4">
+          <p className="mb-2 text-xs font-semibold tracking-wider text-indigo-600 uppercase">
+            Eksplorasi Karir &amp; Magang
+          </p>
+          <h1 className="font-heading text-2xl font-bold tracking-tight leading-tight text-slate-900 sm:text-3xl md:text-4xl">
+            Temukan Peran yang Tepat di Sekolah Karir
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Bergabunglah bersama tim lintas disiplin dalam membangun produk
-            edukasi dan akselerasi karir. Pilih departemen di bawah ini untuk
-            menyaring posisi yang sesuai dengan keahlianmu.
+            Pilih departemen atau cari berdasarkan keahlian untuk melihat posisi
+            yang sedang dibuka.
           </p>
         </section>
 

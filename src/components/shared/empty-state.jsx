@@ -1,73 +1,40 @@
 import { SearchX, RotateCcw } from "lucide-react";
-import { DEFAULT_DEPARTMENT } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
 
 export function EmptyState({
   departmentLabel,
-  activeDepartment = DEFAULT_DEPARTMENT,
   searchQuery = "",
   onReset,
-  onClearSearch,
 }) {
-  const hasSearch = searchQuery.trim().length > 0;
-  const isSpecificDept = activeDepartment !== DEFAULT_DEPARTMENT;
+  const trimmedSearch = searchQuery.trim();
+  const hasSearch = trimmedSearch.length > 0;
 
   return (
-    <div className="rounded-2xl border-2 border-dashed border-slate-200 bg-white px-6 py-12 text-center sm:px-10 sm:py-16">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 text-[#0057FF]">
-        <SearchX size={28} />
+    <div className="rounded-2xl border border-dashed border-slate-200 bg-white px-6 py-12 text-center sm:px-10 sm:py-16">
+      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+        <SearchX size={24} />
       </div>
 
-      <h3 className="mt-5 font-heading text-lg font-semibold text-slate-900 sm:text-xl">
+      <h3 className="mt-4 font-heading text-lg font-semibold text-slate-900 sm:text-xl">
         {hasSearch
-          ? isSpecificDept
-            ? `Tidak ada hasil "${searchQuery}" di ${departmentLabel}`
-            : `Tidak ditemukan posisi untuk "${searchQuery}"`
+          ? `Tidak ditemukan posisi untuk kata kunci "${trimmedSearch}"`
           : `Belum ada posisi terbuka di departemen ${departmentLabel}`}
       </h3>
 
-      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-slate-600">
-        {hasSearch ? (
-          <>
-            Kami tidak menemukan posisi, keahlian, atau tipe kerja yang cocok
-            dengan kata kunci{" "}
-            <span className="font-semibold text-slate-800">
-              &ldquo;{searchQuery}&rdquo;
-            </span>
-            {isSpecificDept ? (
-              <>
-                {" "}
-                pada departemen{" "}
-                <span className="font-semibold text-slate-800">
-                  {departmentLabel}
-                </span>
-              </>
-            ) : null}
-            . Coba gunakan kata kunci lain atau tampilkan seluruh departemen.
-          </>
-        ) : (
-          <>
-            Saat ini seluruh kebutuhan talenta untuk departemen{" "}
-            <span className="font-medium text-slate-800">
-              {departmentLabel}
-            </span>{" "}
-            telah terpenuhi. Silakan jelajahi peluang karir lain yang masih
-            tersedia di departemen lainnya.
-          </>
-        )}
+      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-slate-500">
+        {hasSearch
+          ? "Coba gunakan kata kunci keahlian lain atau tampilkan kembali seluruh departemen."
+          : `Saat ini seluruh kebutuhan talenta untuk departemen ${departmentLabel} telah terpenuhi. Silakan jelajahi peluang karir lain yang masih tersedia di departemen lainnya.`}
       </p>
 
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-        {hasSearch && isSpecificDept && onClearSearch && (
-          <Button variant="secondary" size="md" onClick={onClearSearch}>
-            Hapus Kata Kunci
-          </Button>
-        )}
-
-        <Button variant="primary" size="md" onClick={onReset}>
+      <div className="mt-6 flex items-center justify-center">
+        <button
+          type="button"
+          onClick={onReset}
+          className="inline-flex min-h-[42px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 focus-visible:outline-none"
+        >
           <RotateCcw size={16} />
-          {hasSearch ? "Reset Pencarian & Filter" : "Tampilkan Semua Departemen"}
-        </Button>
+          <span>Reset Semua Filter</span>
+        </button>
       </div>
     </div>
   );

@@ -93,6 +93,15 @@ export function getRolesByDepartment(departmentId, searchQuery = "") {
 }
 
 /**
+ * Filter roles by departmentId and searchQuery object options.
+ * @param {{ departmentId?: string, searchQuery?: string }} options
+ * @returns {Array}
+ */
+export function filterRoles({ departmentId = DEFAULT_DEPARTMENT, searchQuery = "" } = {}) {
+  return getRolesByDepartment(departmentId, searchQuery);
+}
+
+/**
  * Compute total role count per department ID, including "all" and zero-count departments.
  * Respects active search query so department badges reflect matching roles.
  * @param {string} [searchQuery=""]

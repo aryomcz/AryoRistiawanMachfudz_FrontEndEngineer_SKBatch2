@@ -22,7 +22,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className={`${urbanist.variable} h-full antialiased`}>
+    <html
+      lang="id"
+      data-scroll-behavior="smooth"
+      className={`${urbanist.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
         <Header />
         <main className="pt-20 lg:pt-22">

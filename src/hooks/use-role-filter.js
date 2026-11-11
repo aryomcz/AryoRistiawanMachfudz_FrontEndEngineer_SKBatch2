@@ -9,7 +9,7 @@ import {
   SIMULATED_LOADING_DELAY_MS,
 } from "@/lib/constants";
 import {
-  getRolesByDepartment,
+  filterRoles,
   getDepartmentCounts,
 } from "@/services/role.service";
 
@@ -59,7 +59,7 @@ export function useRoleFilter() {
   }, [searchQuery, pathname, router, searchParams]);
 
   const filteredRoles = useMemo(
-    () => getRolesByDepartment(activeDepartment, searchQuery),
+    () => filterRoles({ departmentId: activeDepartment, searchQuery }),
     [activeDepartment, searchQuery]
   );
 
@@ -67,6 +67,9 @@ export function useRoleFilter() {
     () => getDepartmentCounts(searchQuery),
     [searchQuery]
   );
+
+  const hasActiveFilters =
+    activeDepartment !== DEFAULT_DEPARTMENT || searchQuery.trim().length > 0;
 
   const activeDepartmentObj = useMemo(
     () =>
@@ -133,11 +136,12 @@ export function useRoleFilter() {
   return {
     activeDepartment,
     activeDepartmentLabel: activeDepartmentObj.label,
+    setDepartment,
     searchQuery,
     setSearchQuery,
     clearSearch,
-    setDepartment,
     resetFilter,
+    hasActiveFilters,
     filteredRoles,
     departmentCounts,
     isLoading,
