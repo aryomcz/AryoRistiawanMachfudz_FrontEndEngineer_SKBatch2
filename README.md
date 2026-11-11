@@ -10,13 +10,15 @@ Aplikasi web **Role Explorer** responsif untuk **Mini Assignment - Frontend Engi
 
 Brief menekankan bahwa penilaian tidak dilihat dari seberapa kompleks solusi, melainkan dari **kualitas _reasoning_ dan kejelasan eksekusi**. Berikut adalah keputusan produk dan teknis utama yang diambil beserta alasan di baliknya:
 
-| Tantangan / Masalah Produk                                                                 | Keputusan Desain & Teknis                                                                                  | Alasan (_Trade-off & Product Reasoning_)                                                                                                                                                                                                                                                                                                                                                      |
-| :----------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1. Bagaimana menyimpan _state_ filter & pencarian agar praktis bagi kandidat?**          | **Hybrid URL + Local State** (`?dept=...&q=...`) menggunakan Next.js `useSearchParams` & `router.replace`. | Menyimpan _state_ di URL memungkinkan kandidat membagikan tautan posisi spesifik ke rekan (misal: `/?dept=engineering&q=react`) dan menjaga _state_ saat halaman di-_refresh_. Penggunaan _debounce_ `250ms` pada _search query_ menjaga pengetikan tetap instan (**0ms input lag**) tanpa membebani _history stack_ peramban.                                                                |
-| **2. Bagaimana cara tercepat bagi _reviewer_ & _user_ menguji _Empty State_?**             | Menyediakan departemen **`Legal & People (0)`** + **Contextual Search Empty State**.                       | Alih-alih mengharuskan _reviewer_ mengubah kode untuk melihat _empty state_, tersedia tab departemen dengan `0` lowongan untuk pengujian **1 klik**, ditambah _empty state_ kontekstual saat kata kunci pencarian tidak ditemukan.                                                                                                                                                            |
-| **3. Apa yang terjadi jika _user_ mencari kata kunci di satu departemen dan hasilnya 0?**  | **Dynamic Department Badge Counter** yang bereaksi terhadap kata kunci pencarian.                          | Saat _user_ mengetik kata kunci (misal: `"Figma"` saat berada di tab `Engineering`), angka pada lencana departemen lain (`Design 2`) otomatis diperbarui secara _real-time_. Ini mencegah _blind clicking_ dan memberi petunjuk visual di departemen mana peran tersebut berada.                                                                                                              |
-| **4. Tata letak tombol filter di layar _mobile_: _Horizontal Scroll_ vs _Wrapped Pills_?** | Menggunakan **Wrapped Pills (`flex-wrap`)** di seluruh ukuran layar.                                       | Dengan hanya 6 departemen, menampilkan seluruh opsi secara langsung (_wrapped_) menghilangkan _hidden discoverability_ (opsi tersembunyi di balik _scroll_ samping) dan mencegah teks terpotong di layar sempit.                                                                                                                                                                              |
-| **5. Mengapa menyertakan Header, Footer, & Halaman Detail Peran?**                         | Dibangun sebagai **Contextual Product Shell** dengan **Strict Scope Boundary**.                            | Komponen _Role Explorer_ jarang berdiri di ruang hampa. Menyertakan _Header_ (dengan _hover dropdown_ & _mobile drawer_) dan _Footer_ di `layout.jsx` mendemonstrasikan bagaimana komponen ini hidup di ekosistem nyata **SekolahKarir**. Menu di luar cakupan tugas sengaja diarahkan ke halaman `404 Not Found` kustom agar batas _scope_ tetap jelas dan tidak terdistraksi fitur _dummy_. |
+| Tantangan / Masalah Produk | Keputusan Desain & Teknis | Alasan (_Trade-off & Product Reasoning_) |
+| :--- | :--- | :--- |
+| **1. Bagaimana menyimpan _state_ filter & pencarian agar praktis bagi kandidat?** | **Hybrid URL + Local State** (`?dept=...&q=...`) menggunakan Next.js `useSearchParams` & `router.replace`. | Menyimpan _state_ di URL memungkinkan kandidat membagikan tautan posisi spesifik ke rekan (misal: `/?dept=engineering&q=react`) dan menjaga _state_ saat halaman di-_refresh_. Penggunaan _debounce_ `250ms` pada _search query_ menjaga pengetikan tetap instan (**0ms input lag**) tanpa membebani _history stack_ peramban. |
+| **2. Bagaimana memisahkan komponen pencarian dan filter secara modular?** | **Dekomposisi Menjadi `<SearchBar />` & `<DepartmentFilter />` Mandiri** dengan orchestrator di `<RoleExplorer />`. | Menerapkan prinsip _Single Responsibility Principle (SRP)_. Komponen pencarian (`SearchBar`) dapat dikembangkan, diuji, dan digunakan kembali secara independen tanpa keterikatan erat (_tight coupling_) dengan logika pil departemen (`DepartmentFilter`). Keduanya disatukan secara elegan dalam satu area kontrol terpadu (_Law of Common Region_). |
+| **3. Bagaimana cara tercepat bagi _reviewer_ & _user_ menguji _Empty State_?** | Menyediakan departemen **`Legal & People (0)`** + **Contextual Search Empty State**. | Alih-alih mengharuskan _reviewer_ mengubah kode untuk melihat _empty state_, tersedia tab departemen dengan `0` lowongan untuk pengujian **1 klik**, ditambah _empty state_ kontekstual saat kata kunci pencarian tidak ditemukan. |
+| **4. Apa yang terjadi jika _user_ mencari kata kunci di satu departemen dan hasilnya 0?** | **Dynamic Department Badge Counter** yang bereaksi terhadap kata kunci pencarian. | Saat _user_ mengetik kata kunci (misal: `"Figma"` saat berada di tab `Engineering`), angka pada lencana departemen lain (`Design 2`) otomatis diperbarui secara _real-time_. Ini mencegah _blind clicking_ dan memberi petunjuk visual di departemen mana peran tersebut berada. |
+| **5. Mengapa beralih ke anatomi 3-Chunk pada kartu lowongan?** | **Miller's Law & Progressive Disclosure** (Menghilangkan _badge overload_). | Mengurangi beban visual kognitif dengan mengelompokkan kartu ke dalam 3 chunk terstruktur: Header (Departemen + Waktu + Judul), Core Context (Metadata inline + Ringkasan 2 baris), dan Footer (Maksimal 2 chip skill + chip `+N` + penunjuk aksi). Seluruh permukaan kartu menjadi satu tautan utuh yang mudah diklik (_Fitts's Law_). |
+| **6. Tata letak tombol filter di layar _mobile_: _Horizontal Scroll_ vs _Wrapped Pills_?** | Menggunakan **Wrapped Pills (`flex-wrap`)** di seluruh ukuran layar. | Dengan hanya 6 departemen, menampilkan seluruh opsi secara langsung (_wrapped_) menghilangkan _hidden discoverability_ (opsi tersembunyi di balik _scroll_ samping) dan mencegah teks terpotong di layar sempit. |
+| **7. Mengapa menyertakan Header, Footer, & Halaman Detail Peran?** | Dibangun sebagai **Contextual Product Shell** dengan **Strict Scope Boundary**. | Komponen _Role Explorer_ jarang berdiri di ruang hampa. Menyertakan _Header_ (dengan _hover dropdown_ & _mobile drawer_) dan _Footer_ di `layout.jsx` mendemonstrasikan bagaimana komponen ini hidup di ekosistem nyata **SekolahKarir**. Menu di luar cakupan tugas sengaja diarahkan ke halaman `404 Not Found` kustom agar batas _scope_ tetap jelas dan tidak terdistraksi fitur _dummy_. |
 
 ---
 
@@ -60,12 +62,13 @@ src/
 │   │   └── empty-state.jsx          # Empty State kontekstual (filter departemen & pencarian)
 │   └── features/
 │       └── role-explorer/           # Domain utama Role Explorer
-│           ├── department-filter.jsx # Panel kontrol terpadu: Search Bar + Department Pills
-│           ├── role-card.jsx        # Kartu informasi peran dengan tinggi seragam
-│           ├── role-card-skeleton.jsx # Skeleton presisi untuk mencegah layout shift (CLS)
+│           ├── search-bar.jsx       # [NEW] Komponen pencarian mandiri (shortcut "/", clear "Hapus x")
+│           ├── department-filter.jsx # Komponen filter pil departemen terfokus
+│           ├── role-card.jsx        # Kartu peran dengan anatomi 3-chunk & full-surface clickable
+│           ├── role-card-skeleton.jsx # Skeleton presisi 3-chunk untuk mencegah layout shift (CLS)
 │           ├── role-detail-view.jsx # Tampilan detail posisi, galeri, & posisi terkait
-│           ├── role-explorer.jsx    # Container orchestrator fitur Role Explorer
-│           └── role-grid.jsx        # Grid kartu + atomic live status bar
+│           ├── role-explorer.jsx    # Orchestrator penyatu SearchBar + DepartmentFilter + Grid
+│           └── role-grid.jsx        # Grid kartu responsif + atomic live status bar
 ├── config/
 │   └── site.js                      # Konfigurasi metadata situs
 ├── data/
@@ -81,6 +84,7 @@ src/
 
 **Keunggulan Arsitektur Ini**:
 
+- **Tinggi Modularitas & Reusabilitas**: Pemisahan `search-bar.jsx` dari `department-filter.jsx` memastikan setiap komponen memiliki satu fungsi spesifik (_Single Responsibility_). Komponen `SearchBar` dapat dengan mudah dipindahkan atau dipakai ulang pada bagian lain aplikasi tanpa membawa kode filter departemen.
 - **Mudah Diuji & Dipelihara**: Seluruh logika pemfilteran dan kalkulasi jumlah posisi berada di fungsi murni (`src/services/role.service.js`), terpisah dari siklus hidup React (`src/hooks/use-role-filter.js`) dan representasi visual (`src/components/`).
 - **Zero External State Bloat**: Memanfaatkan _built-in hooks_ React (`useMemo`, `useCallback`, `useState`) dan URL Search Params tanpa ketergantungan _library state management_ eksternal yang berlebihan untuk skala fitur ini.
 
@@ -102,19 +106,22 @@ src/
 
 ## 5. Detail UX & Aksesibilitas (`UX Detail`)
 
-- **Panel Kontrol Pencarian & Filter Terpadu**:
-  - Mendukung pencarian _multi-keyword_ lintas atribut: **judul posisi**, **departemen**, **ringkasan**, **keahlian (`React`, `Figma`, `SQL`)**, **tipe kerja (`Remote`, `Hybrid`, `On-site`)**, hingga **level (`Intern`, `Junior`, `Mid-Level`)**.
-  - **Keyboard Shortcuts**: Tekan `/` dari mana saja di halaman untuk langsung memfokuskan kolom pencarian, dan tekan `Escape` untuk membersihkan kata kunci.
+- **Komponen Pencarian Mandiri (`<SearchBar />`)**:
+   - Mendukung pencarian _real-time_ multi-atribut: **judul posisi**, **departemen**, **ringkasan**, **keahlian (`React`, `Figma`, `SQL`)**, **tipe kerja (`Remote`, `Hybrid`, `On-site`)**, hingga **level (`Intern`, `Junior`, `Mid-Level`)**.
+   - **Keyboard Shortcuts**: Tekan `/` dari mana saja di halaman untuk langsung memfokuskan kolom pencarian di desktop, dan tekan `Escape` untuk membersihkan kata kunci.
+   - **Tombol Hapus Cepat**: Tombol `Hapus ×` interaktif langsung muncul ketika pengguna mulai mengetik, memungkinkan pengosongan kata kunci dalam satu klik (_Fitts's Law_).
+- **Filter Departemen Terfokus (`<DepartmentFilter />`)**:
+   - Pil departemen interaktif dengan counter dinamis yang mencerminkan lowongan yang cocok dengan kata kunci pencarian aktif secara _real-time_.
+- **Anatomi 3-Chunk pada Kartu (`<RoleCard />`)**:
+   - **Chunk 1 (Header)**: Lencana departemen aksen lembut + waktu publikasi relatif + judul peran dengan kontras tinggi (`line-clamp-1`).
+   - **Chunk 2 (Core Context)**: Baris metadata tenang (`Lokasi • Tipe Kerja • Status Pekerjaan`) + ringkasan 2 baris teratur (`line-clamp-2`).
+   - **Chunk 3 (Footer)**: Maksimal 2 chip skill utama + chip indikator `+N` sisa skill + tombol aksi `Lihat Detail` dengan ikon panah.
+   - Seluruh permukaan kartu dibungkus dalam `<Link>` yang responsif terhadap hover elevasi dan fokus keyboard.
 - **Zero Cumulative Layout Shift (CLS)**:
-  - `<RoleExplorerFallback />`, `<RoleCardSkeleton />`, dan `<RoleDetailSkeleton />` dirancang mengikuti dimensi, _border-radius_, dan struktur elemen asli sehingga transisi pemuatan bebas dari lompatan tata letak.
-- **Keseragaman Visual Kartu (_Card Alignment_)**:
-  - Menggunakan judul 1 baris (`line-clamp-1`), ringkasan 2 baris dengan tinggi tetap (`min-h-[2.75rem] line-clamp-2`), deretan _skill badge_ dengan indikator `+N`, serta _footer_ yang selalu rata bawah (`mt-auto`) sehingga seluruh kartu dalam satu baris _grid_ sejajar rapi di segala ukuran layar.
-- **Navigasi Responsif & Interaktif**:
-  - **Desktop**: _Floating pill navbar_ dengan menu _dropdown_ halus saat di-_hover_ (dilengkapi _invisible hover bridge_ agar menu tidak tertutup saat kursor berpindah) serta perilaku _auto-hide_ saat _scroll_ ke bawah.
-  - **Mobile**: _Slide-over drawer_ dengan animasi _spring cubic-bezier_ (`cubic-bezier(0.16, 1, 0.3, 1)`), _backdrop fade_, penguncian _body scroll_, dan dukungan tombol `Escape`.
+   - `<RoleExplorerFallback />`, `<RoleCardSkeleton />`, dan `<RoleDetailSkeleton />` dirancang mengikuti dimensi, _border-radius_, dan struktur elemen asli sehingga transisi pemuatan bebas dari lompatan tata letak.
 - **Aksesibilitas (WCAG & Screen Reader)**:
-  - Tombol departemen menggunakan `aria-pressed={isActive}`, kolom pencarian memiliki `<label>` eksplisit, dan bar status menggunakan `role="status" aria-live="polite" aria-atomic="true"` untuk mengumumkan perubahan jumlah hasil secara otomatis kepada pengguna _screen reader_.
-  - Menghormati preferensi sistem `prefers-reduced-motion` (`motion-reduce:transition-none` & `motion-reduce:animate-none`).
+   - Tombol departemen menggunakan `aria-pressed={isActive}`, kolom pencarian memiliki `<label>` eksplisit dan `role="searchbox"`, dan bar status menggunakan `role="status" aria-live="polite" aria-atomic="true"` untuk mengumumkan perubahan jumlah hasil secara otomatis kepada pengguna _screen reader_.
+   - Menghormati preferensi sistem `prefers-reduced-motion` (`motion-reduce:transition-none` & `motion-reduce:animate-none`).
 
 ---
 
