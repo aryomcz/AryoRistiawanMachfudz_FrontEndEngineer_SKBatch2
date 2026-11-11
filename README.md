@@ -81,7 +81,7 @@ src/
 
 **Keunggulan Arsitektur Ini**:
 
-- ** Mudah Diuji & Dipelihara**: Seluruh logika pemfilteran dan kalkulasi jumlah posisi berada di fungsi murni (`src/services/role.service.js`), terpisah dari siklus hidup React (`src/hooks/use-role-filter.js`) dan representasi visual (`src/components/`).
+- **Mudah Diuji & Dipelihara**: Seluruh logika pemfilteran dan kalkulasi jumlah posisi berada di fungsi murni (`src/services/role.service.js`), terpisah dari siklus hidup React (`src/hooks/use-role-filter.js`) dan representasi visual (`src/components/`).
 - **Zero External State Bloat**: Memanfaatkan _built-in hooks_ React (`useMemo`, `useCallback`, `useState`) dan URL Search Params tanpa ketergantungan _library state management_ eksternal yang berlebihan untuk skala fitur ini.
 
 ---
