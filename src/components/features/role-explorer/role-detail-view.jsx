@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { RoleCard } from "@/components/features/role-explorer/role-card";
 import { SIMULATED_LOADING_DELAY_MS } from "@/lib/constants";
 import { RoleDetailSkeleton } from "@/app/roles/[id]/loading";
+import { ArrowLeft, MoveRight } from "lucide-react";
 
 const WORK_TYPE_GLASS_VARIANT = {
   Remote: "glass-success",
@@ -47,27 +48,15 @@ export function RoleDetailView({ role, relatedRoles }) {
           href="/"
           className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-2 text-xs font-bold text-slate-700 shadow-2xs backdrop-blur-md transition-colors hover:border-[#0057FF]/40 hover:bg-white hover:text-[#0057FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] sm:text-sm"
         >
-          <svg
-            aria-hidden="true"
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="m12 19-7-7 7-7" />
-            <path d="M19 12H5" />
-          </svg>
+          <ArrowLeft size={16} />
           Kembali ke Eksplorasi Peran
         </Link>
 
         <Link
           href={`/?dept=${role.department}`}
-          className="rounded-full border border-blue-200/60 bg-blue-500/10 px-3.5 py-1.5 text-xs font-bold text-[#0057FF] backdrop-blur-md transition-colors hover:bg-blue-500/15 sm:text-sm"
+          className="rounded-full inline-flex items-center gap-2 border border-blue-200/60 bg-blue-500/10 px-3.5 py-1.5 text-xs font-bold text-[#0057FF] backdrop-blur-md transition-colors hover:bg-blue-500/15 sm:text-sm"
         >
-          Lihat semua di departemen {role.departmentLabel} →
+          Lihat semua di departemen {role.departmentLabel} <MoveRight size={16}/>
         </Link>
       </div>
 
