@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -421,17 +422,20 @@ function HeaderContent({ pathname }) {
               Masuk
             </Link>
 
-            {/* Circular Hamburger Menu Button -Mobile & Tablet Only */}
-            <button
+            {/* Circular Hamburger Menu Button - Mobile & Tablet Only */}
+            <Button
               type="button"
               aria-label="Buka menu navigasi"
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
               onClick={handleOpenMobileMenu}
-              className="inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#DCE3EC] text-slate-900 transition-colors duration-150 hover:bg-[#CED7E4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 sm:h-11 sm:w-11 lg:hidden"
+              variant="secondary"
+              size="icon-md"
+              rounded="full"
+              className="lg:hidden"
             >
               <Menu size={16} />
-            </button>
+            </Button>
           </div>
         </div>
       </header>
@@ -483,14 +487,17 @@ function HeaderContent({ pathname }) {
               </Link>
 
               {/* Dark circular close button matching mobile video recording */}
-              <button
+              <Button
                 type="button"
                 aria-label="Tutup menu navigasi"
                 onClick={handleCloseMobileMenu}
-                className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-slate-100 text-slate-800 border border-slate-300 shadow-xs transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]"
+                variant="outline"
+                size="icon-sm"
+                rounded="full"
+                className="border-slate-300 bg-slate-100 text-slate-800 shadow-xs hover:scale-105 active:scale-95"
               >
                 <X size={16} />
-              </button>
+              </Button>
             </div>
 
             {/* Drawer Content */}

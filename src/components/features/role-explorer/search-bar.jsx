@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { Search, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function SearchBar({
@@ -96,15 +97,18 @@ export function SearchBar({
         />
 
         {hasQuery && (
-          <button
+          <Button
             type="button"
             onClick={handleClear}
             aria-label="Hapus kata kunci pencarian"
-            className="absolute right-2 inline-flex min-h-8 cursor-pointer items-center gap-1 rounded-xl bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600 transition-colors hover:bg-red-50 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:right-2.5 sm:text-xs"
+            variant="ghost"
+            size="xs"
+            rounded="xl"
+            className="absolute right-2 min-h-8 bg-slate-100 text-slate-600 hover:bg-red-50 hover:text-red-500 focus-visible:ring-red-500 sm:right-2.5 sm:text-xs"
           >
             <X aria-hidden="true" className="h-3.5 w-3.5" />
             <span>Hapus</span>
-          </button>
+          </Button>
         )}
       </div>
     </div>

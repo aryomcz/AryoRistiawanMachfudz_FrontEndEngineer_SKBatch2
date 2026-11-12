@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const MAX_VISIBLE_SKILLS = 2;
 
@@ -77,12 +78,15 @@ export function RoleCard({ role }) {
             )}
           </div>
 
-          <button
-            className="cursor-pointer inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-[#EDF2F7] px-3.5 py-1.5 text-xs font-bold text-slate-800 transition-colors duration-150 group-hover:bg-[#0057FF] group-hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2"
+          <Button
+            as="span"
+            size="sm"
+            rounded="xl"
+            className="shrink-0 gap-1.5 whitespace-nowrap bg-[#EDF2F7] font-bold text-slate-800 transition-colors duration-150 group-hover:bg-[#0057FF] group-hover:text-white"
           >
             <span>Lihat Detail</span>
-           <ArrowUpRight size={14} />
-          </button>
+            <ArrowUpRight size={14} />
+          </Button>
         </div>
       </article>
     </Link>

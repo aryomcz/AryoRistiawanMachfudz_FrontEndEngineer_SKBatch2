@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function DepartmentFilter({
@@ -24,24 +25,21 @@ export function DepartmentFilter({
       </div>
 
       {/* Wrapped Pills on Mobile & Desktop to prevent horizontal overflow and clipped labels */}
-       <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-2 sm:flex-wrap sm:pb-0">
+       <div className="no-scrollbar flex items-center gap-1.5 overflow-x-auto pb-2 sm:flex-wrap sm:pb-0">
         {departments.map((dept) => {
           const isActive = activeDepartment === dept.id;
           const count = departmentCounts[dept.id] ?? 0;
           const isZero = count === 0;
 
           return (
-            <button
+            <Button
               key={dept.id}
               type="button"
               aria-pressed={isActive}
               onClick={() => onSelectDepartment(dept.id)}
-              className={cn(
-                "group inline-flex min-h-10 max-w-full cursor-pointer items-center gap-2 rounded-2xl border px-3.5 py-1.5 text-xs font-medium transition-colors duration-150 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 sm:min-h-11 sm:gap-2.5 sm:px-4 sm:py-2 sm:text-sm",
-                isActive
-                  ? "border-blue-600 bg-blue-600 text-white shadow-xs font-semibold"
-                  : "border-slate-200 bg-white text-slate-700 shadow-2xs hover:border-blue-200 hover:bg-blue-50/60 hover:text-blue-600"
-              )}
+              variant={isActive ? "pillActive" : "pill"}
+              rounded="xl"
+              className="group min-h-10 max-w-full px-3.5 py-1.5 text-xs font-medium sm:min-h-11 sm:gap-2.5 sm:px-4 sm:py-2 sm:text-sm"
             >
               <span className="truncate whitespace-nowrap">{dept.label}</span>
               <span
@@ -57,7 +55,7 @@ export function DepartmentFilter({
               >
                 {count}
               </span>
-            </button>
+            </Button>
           );
         })}
       </div>

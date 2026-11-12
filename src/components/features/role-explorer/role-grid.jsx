@@ -1,5 +1,6 @@
 import { Loader2, RotateCcw, X } from "lucide-react";
 import { DEFAULT_DEPARTMENT } from "@/lib/constants";
+import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/shared/empty-state";
 import { RoleCard } from "./role-card";
 import { RoleCardSkeleton } from "./role-card-skeleton";
@@ -68,14 +69,16 @@ export function RoleGrid({
         </div>
 
         {isFiltered && !isLoading && (
-           <button
+          <Button
             type="button"
             onClick={onResetFilter}
-            className="inline-flex cursor-pointer items-center gap-1.5 text-xs font-semibold text-blue-600 underline-offset-4 transition-colors hover:text-blue-700 hover:underline focus-visible:rounded focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none"
+            variant="link"
+            size="sm"
+            className="gap-1.5 text-blue-600 hover:text-blue-700"
           >
             <RotateCcw aria-hidden="true" className="h-3.5 w-3.5" />
             <span>Reset semua filter</span>
-          </button>
+          </Button>
         )}
       </div>
 
