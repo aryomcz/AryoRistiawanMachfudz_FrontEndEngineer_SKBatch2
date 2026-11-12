@@ -101,10 +101,10 @@ export function SearchBar({
             type="button"
             onClick={handleClear}
             aria-label="Hapus kata kunci pencarian"
-            variant="ghost"
+            variant="clear"
             size="xs"
             rounded="xl"
-            className="absolute right-2 min-h-8 bg-slate-100 text-slate-600 hover:bg-red-50 hover:text-red-500 focus-visible:ring-red-500 sm:right-2.5 sm:text-xs"
+            className="absolute right-2 min-h-8 sm:right-2.5 sm:text-xs"
           >
             <X aria-hidden="true" className="h-3.5 w-3.5" />
             <span>Hapus</span>

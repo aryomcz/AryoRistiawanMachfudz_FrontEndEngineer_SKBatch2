@@ -80,9 +80,10 @@ export function RoleCard({ role }) {
 
           <Button
             as="span"
+            variant="cardCta"
             size="sm"
             rounded="xl"
-            className="shrink-0 gap-1.5 whitespace-nowrap bg-[#EDF2F7] font-bold text-slate-800 transition-colors duration-150 group-hover:bg-[#0057FF] group-hover:text-white"
+            className="shrink-0 gap-1.5 whitespace-nowrap"
           >
             <span>Lihat Detail</span>
             <ArrowUpRight size={14} />

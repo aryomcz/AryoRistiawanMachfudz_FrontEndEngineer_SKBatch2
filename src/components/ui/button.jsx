@@ -19,6 +19,11 @@ const BUTTON_VARIANTS = {
     "border-slate-200 bg-white text-slate-700 shadow-2xs hover:border-blue-200 hover:bg-blue-50/60 hover:text-blue-600 border",
   pillActive:
     "border-blue-600 bg-blue-600 text-white shadow-xs font-semibold border",
+  cardCta:
+    "bg-[#EDF2F7] text-slate-800 group-hover:bg-[#0057FF] group-hover:text-white border border-transparent font-bold",
+  clear:
+    "bg-slate-100 text-slate-600 hover:bg-red-50 hover:text-red-500 border border-transparent font-semibold",
+  none: "",
 };
 
 const BUTTON_SIZES = {
@@ -48,7 +53,7 @@ const BUTTON_ROUNDED = {
  *
  * @param {Object} props
  * @param {React.ElementType} [props.as="button"] - Render as custom element (e.g. "span", Link) for polymorphic use.
- * @param {"primary" | "secondary" | "outline" | "ghost" | "danger" | "dark" | "link" | "pill" | "pillActive"} [props.variant="primary"]
+ * @param {"primary" | "secondary" | "outline" | "ghost" | "danger" | "dark" | "link" | "pill" | "pillActive" | "cardCta" | "clear" | "none"} [props.variant="primary"]
  * @param {"xs" | "sm" | "md" | "lg" | "icon-xs" | "icon-sm" | "icon-md" | "icon-lg"} [props.size="md"]
  * @param {"none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full"} [props.rounded="xl"]
  * @param {string} [props.className]
@@ -64,14 +69,27 @@ export function Button({
   className,
   ...props
 }) {
+  const variantClass =
+    variant in BUTTON_VARIANTS
+      ? BUTTON_VARIANTS[variant]
+      : BUTTON_VARIANTS.primary;
+
+  const sizeClass =
+    size in BUTTON_SIZES ? BUTTON_SIZES[size] : BUTTON_SIZES.md;
+
+  const roundedClass =
+    rounded in BUTTON_ROUNDED
+      ? BUTTON_ROUNDED[rounded]
+      : BUTTON_ROUNDED.xl;
+
   return (
     <Component
       type={type}
       className={cn(
         "inline-flex cursor-pointer items-center justify-center gap-2 font-semibold transition-colors duration-150 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-        BUTTON_VARIANTS[variant] || BUTTON_VARIANTS.primary,
-        BUTTON_SIZES[size] || BUTTON_SIZES.md,
-        BUTTON_ROUNDED[rounded] || BUTTON_ROUNDED.xl,
+        variantClass,
+        sizeClass,
+        roundedClass,
         className
       )}
       {...props}
