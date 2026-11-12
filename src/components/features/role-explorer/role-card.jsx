@@ -15,7 +15,7 @@ export function RoleCard({ role }) {
       href={`/roles/${role.id}`}
       className="group block h-full rounded-3xl focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none"
     >
-      <article className="flex h-full min-h-[240px] flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-6 transition-all duration-200 motion-reduce:transition-none group-hover:-translate-y-0.5 group-hover:border-blue-300 group-hover:shadow-md">
+      <article className="flex h-full min-h-60 flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-6 transition-all duration-200 motion-reduce:transition-none group-hover:-translate-y-0.5 group-hover:border-blue-300 group-hover:shadow-md">
         <div>
           {/* Chunk 1 — Header (Micro-group) */}
           <div className="space-y-2">
