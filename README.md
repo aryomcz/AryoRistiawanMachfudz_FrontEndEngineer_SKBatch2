@@ -24,6 +24,7 @@ Berikut beberapa keputusan produk yang diterapkan untuk meningkatkan kenyamanan 
 | :--- | :--- | :--- |
 | **Menyimpan status filter & pencarian** | Sinkronisasi URL Search Params (`?dept=...&q=...`) | Memudahkan kandidat membagikan tautan posisi tertentu ke orang lain dan menjaga filter tetap aktif saat halaman dimuat ulang. Input pencarian diberi *debounce* 250ms agar peramban tidak mencatat riwayat berlebih di tiap ketikan huruf. |
 | **Pemisahan kontrol pencarian & filter** | Memisahkan `<SearchBar />` dan `<DepartmentFilter />` | Menerapkan prinsip tanggung jawab tunggal (*single responsibility*). Komponen pencarian bisa dikembangkan atau dipindahkan secara terpisah tanpa terikat logika filter departemen. |
+| **Konsistensi tombol & kepatuhan HTML** | Komponen terpadu `<Button />` dengan prop fleksibel | Menyatukan styling tombol di seluruh aplikasi agar konsisten, mudah dirawat, dan mendukung rendering fleksibel (misalnya `as="span"` pada kartu lowongan agar tidak terjadi elemen interaktif bersarang di dalam `<Link>`). |
 | **Kemudahan menguji *Empty State*** | Menyediakan tab departemen **`Legal & People (0)`** | Reviewer dan penguji dapat melihat tampilan *empty state* dalam 1 klik tanpa harus mengubah data di kode. Tersedia juga *empty state* kontekstual ketika kata kunci pencarian tidak ditemukan. |
 | **Menghindari klik kosong saat mencari peran** | Badge Counter departemen dinamis | Angka pada tombol departemen otomatis menyesuaikan dengan kata kunci pencarian yang sedang aktif. Pengguna langsung tahu jika peran yang dicari ada di departemen lain. |
 | **Keterbacaan kartu lowongan** | Struktur kartu 3 bagian teratur | Mengelompokkan kartu menjadi Header (kategori & judul), Informasi Utama (lokasi, tipe kerja, ringkasan), dan Footer (tag keahlian & tombol detail). Seluruh area kartu dapat diklik langsung ke halaman detail. |
@@ -60,6 +61,9 @@ src/
 │           └── page.jsx             # Halaman detail posisi peran
 ├── components/
 │   ├── ui/                          # Komponen dasar (Button, Badge, Skeleton)
+│   │   ├── button.jsx               # Komponen tombol dinamis (variant, size, rounded, as)
+│   │   ├── badge.jsx                # Lencana status dan kategori
+│   │   └── skeleton.jsx             # Placeholder loading animasi
 │   ├── layout/                      # Komponen layout (Header, Footer)
 │   ├── shared/                      # Komponen bersama (EmptyState)
 │   └── features/
@@ -84,8 +88,15 @@ src/
     └── role.service.js              # Logika query data, filter, dan perhitungan jumlah
 ```
 
-**Kesiapan Backend (Service Layer)**:
-Data saat ini disimpan dalam file JSON lokal (`roles.json`), namun seluruh logika pemfilteran dan pengambilannya diisolasi di dalam `role.service.js`. Dengan pemisahan ini, ketika aplikasi nantinya dihubungkan ke backend atau REST API nyata, pengembang cukup memperbarui fungsi di layer *service* tanpa perlu mengubah komponen tampilan.
+### Kesiapan Backend (Service Layer)
+Data lowongan saat ini disimpan di file JSON lokal (`roles.json`), namun seluruh logika pemfilteran, pencarian kata kunci, dan penghitungan jumlah peran dipusatkan di `role.service.js`. Saat nantinya aplikasi dihubungkan ke backend atau REST API nyata, pengembang cukup mengganti implementasi di dalam service layer tanpa perlu membongkar struktur komponen UI.
+
+### Komponen Tombol Dinamis (`<Button />`)
+Seluruh tombol di aplikasi dikelola secara terpusat melalui `src/components/ui/button.jsx`:
+- **Warna (`variant`)**: `primary`, `secondary`, `outline`, `ghost`, `danger`, `dark`, `link`, `pill`, `pillActive`.
+- **Ukuran (`size`)**: `xs`, `sm`, `md`, `lg`, serta varian ikon (`icon-xs`, `icon-sm`, `icon-md`, `icon-lg`).
+- **Kelengkungan (`rounded`)**: Mulai dari `none`, `sm`, `md`, `lg`, `xl` (default), `2xl`, hingga `full`.
+- **Fleksibilitas Elemen (`as`)**: Dapat dirender sebagai tombol biasa (`button`) maupun elemen lain seperti `span` (misal di dalam kartu lowongan yang sudah dibungkus `Link`, agar struktur HTML tetap valid).
 
 ---
 
