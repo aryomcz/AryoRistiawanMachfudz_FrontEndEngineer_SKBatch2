@@ -97,7 +97,7 @@ Data lowongan saat ini disimpan di file JSON lokal (`roles.json`), namun seluruh
 
 Seluruh tombol di aplikasi dikelola secara terpusat melalui `src/components/ui/button.jsx`:
 
-- **Warna (`variant`)**: `primary`, `secondary`, `outline`, `ghost`, `danger`, `dark`, `link`, `pill`, `pillActive`.
+- **Warna & Gaya (`variant`)**: `primary`, `secondary`, `outline`, `ghost`, `danger`, `dark`, `link`, `pill`, `pillActive`, `cardCta` (tombol kartu lowongan dengan teks kontras tinggi dan efek hover biru), `clear` (tombol hapus pencarian), serta `none` (tanpa style bawaan).
 - **Ukuran (`size`)**: `xs`, `sm`, `md`, `lg`, serta varian ikon (`icon-xs`, `icon-sm`, `icon-md`, `icon-lg`).
 - **Kelengkungan (`rounded`)**: Mulai dari `none`, `sm`, `md`, `lg`, `xl` (default), `2xl`, hingga `full`.
 - **Fleksibilitas Elemen (`as`)**: Dapat dirender sebagai tombol biasa (`button`) maupun elemen lain seperti `span` (misal di dalam kartu lowongan yang sudah dibungkus `Link`, agar struktur HTML tetap valid).
