@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="mx-auto flex w-full max-w-6xl flex-1 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-        <div className="w-full max-w-lg rounded-3xl border border-white/90 bg-[#EDF2F7]/85 p-4 shadow-2xs sm:p-6">
+        <div className="w-full max-w-lg rounded-3xl border border-slate-200 bg-[#EDF2F7]/85">
           <div className="rounded-2xl border border-slate-200/80 bg-white px-6 py-12 text-center sm:px-10 sm:py-14">
             {/* 404 Badge & Icon */}
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 text-[#0057FF]">
@@ -32,7 +32,7 @@ export default function NotFound() {
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 href="/"
-                className="inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#0057FF] px-6 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-150 hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2 sm:w-auto"
+                className="inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#0057FF] px-6 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-150 hover:bg-[#0046CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2 sm:w-auto"
               >
                 <ArrowLeft size={16} />
                 Kembali ke Karir
