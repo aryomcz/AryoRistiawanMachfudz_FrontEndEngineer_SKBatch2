@@ -305,7 +305,7 @@ function HeaderContent({ pathname }) {
             : "translate-y-0"
         )}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-full border border-white/90 bg-[#EDF2F7]/95 px-3.5 py-2 shadow-sm backdrop-blur-md sm:px-6 sm:py-2.5">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 rounded-3xl border border-white/90 bg-[#EDF2F7]/95 px-3.5 py-2 shadow-sm backdrop-blur-md sm:px-6 sm:py-2.5">
           {/* Left: SekolahKarir Logo + Brand Wordmark */}
           <Link
             href="/"
