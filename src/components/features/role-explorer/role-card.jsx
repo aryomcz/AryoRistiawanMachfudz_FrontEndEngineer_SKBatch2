@@ -78,7 +78,7 @@ export function RoleCard({ role }) {
           </div>
 
           <button
-            className="cursor-pointer inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#EDF2F7] px-3.5 py-1.5 text-xs font-bold text-slate-800 transition-colors duration-150 group-hover:bg-[#0057FF] group-hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2"
+            className="cursor-pointer inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-[#EDF2F7] px-3.5 py-1.5 text-xs font-bold text-slate-800 transition-colors duration-150 group-hover:bg-[#0057FF] group-hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0057FF] focus-visible:ring-offset-2"
           >
             <span>Lihat Detail</span>
            <ArrowUpRight size={14} />
